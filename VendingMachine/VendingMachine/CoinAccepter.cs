@@ -3,6 +3,7 @@
     public class CoinAccepter{
 
         private float m_currentDeposit = 0;
+        private float m_changeOnLastPurchase = 0.5f;
 
         public enum Coin{
 
@@ -44,6 +45,11 @@
         public float GetCurrentDeposit(){
 
             return m_currentDeposit;
+        }
+
+        public string GetChangeOnLastPurchase(){
+
+            return m_changeOnLastPurchase.ToString("C2");
         }
     }
 }
