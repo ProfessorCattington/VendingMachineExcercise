@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VendingMachineNS
+﻿namespace VendingMachineNS
 {
-
-
-
     public class CoinAccepter{
 
         private float m_currentDeposit = 0;
@@ -28,9 +19,12 @@ namespace VendingMachineNS
 
         public void AcceptCoint(CoinAccepter.Coin coin){
 
-            float depositedCoinValue = (float)coin / 100;
+            if(coin != CoinAccepter.Coin.Penny){
 
-            m_currentDeposit += depositedCoinValue;
+                float depositedCoinValue = (float)coin / 100;
+       
+                m_currentDeposit += depositedCoinValue;
+            }
         }
 
         public float GetCurrentDeposit(){
