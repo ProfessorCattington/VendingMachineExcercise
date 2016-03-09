@@ -46,6 +46,7 @@
     <Compile Include="CoinAccepter.cs" />
     <Compile Include="ControlPanel.cs" />
     <Compile Include="DigitalDisplay.cs" />
+    <Compile Include="ProductDispenser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VendingMachineController.cs" />

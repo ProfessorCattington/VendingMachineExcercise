@@ -20,6 +20,19 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
+        public void TestProductDispenserDispensesProduct(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            string testLastDispensedProducted = "None";
+
+            Assert.AreEqual(testLastDispensedProducted, productDispenser.GetLastProductDispensed());
+
+        }
+
+        [TestMethod]
         public void TestVendingMachineAcceptsCoins(){
 
             testVendingMachineController = new VendingMachineController();
@@ -100,6 +113,5 @@ namespace VendingMachineTest
             controlPanel.UserPushedColaButton();
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetPrice());
         }
-
     }
 }
