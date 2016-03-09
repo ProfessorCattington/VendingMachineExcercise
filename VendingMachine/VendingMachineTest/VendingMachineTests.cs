@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineNS;
 
 namespace VendingMachineTest
@@ -28,6 +27,20 @@ namespace VendingMachineTest
             float testCurrentDeposit = 0;
 
             Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
+        }
+
+        [TestMethod]
+        public void TestVendingMachineUpdatesDisplayWhenCoinIsAdded()
+        {
+
+            CoinAccepter coinAccepter = new CoinAccepter();
+            DigitalDisplay digitalDisplay = new DigitalDisplay(coinAccepter);
+
+            coinAccepter.AcceptCoint(CoinAccepter.Coin.Nickle);
+
+            string testDisplayOutput = "$0.05";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetDisplayOutput());
         }
     }
 }
