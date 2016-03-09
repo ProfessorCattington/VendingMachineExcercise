@@ -52,5 +52,14 @@ namespace VendingMachineTest
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.GetDisplayOutput());
         }
+
+        [TestMethod]
+        public void TestVendingMachineControllerObject(){
+                        
+            VendingMachineController vendingMachineController = new VendingMachineNS.VendingMachineController();
+
+            Assert.IsNotNull(vendingMachineController.GetDigitalDisplay());
+            Assert.IsNotNull(vendingMachineController.GetCoinAccepter());
+        }
     }
 }
