@@ -3,22 +3,34 @@
    public class DigitalDisplay {
 
         private CoinAccepter m_coinAccepter;
+        private string m_displayDepositAmount;
+        private string m_displayPriceAmount;
 
         public DigitalDisplay(CoinAccepter coinAccepter){
 
             m_coinAccepter = coinAccepter;
         }
 
-        public string GetDisplayOutput(){
+        public string DisplayCurrentDeposit(){
 
-            string formattedOutput = m_coinAccepter.GetCurrentDeposit().ToString("C2");
+            m_displayDepositAmount = m_coinAccepter.GetCurrentDeposit().ToString("C2");
 
-            if(formattedOutput == "$0.00"){
+            if(m_displayDepositAmount == "$0.00"){
 
-                formattedOutput = "INSERT COIN";
+                m_displayDepositAmount = "INSERT COIN";
             }
 
-            return formattedOutput;
+            return m_displayDepositAmount;
+        }
+
+        public void SetPrice(string price){
+
+            m_displayPriceAmount = price;
+        }
+
+        public string GetPrice(){
+
+            return m_displayPriceAmount;
         }
     }
 }

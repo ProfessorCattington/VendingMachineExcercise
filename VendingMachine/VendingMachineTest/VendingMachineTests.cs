@@ -43,7 +43,7 @@ namespace VendingMachineTest
 
             string testDisplayOutput = "$0.05";
 
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetDisplayOutput());
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace VendingMachineTest
 
             string testDisplayOutput = "INSERT COIN";
 
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetDisplayOutput());
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
         }
 
         [TestMethod]
@@ -70,7 +70,15 @@ namespace VendingMachineTest
         [TestMethod]
         public void TestVendingMachineControlPanelUpdatesDisplayWithPrice(){
 
-        
+            VendingMachineController vendingMachineController = new VendingMachineController();
+
+            ControlPanel controlPanel = vendingMachineController.GetControlPanel();
+            controlPanel.UserPushedCandyButton();
+
+            string testDisplayOutput = "$0.65";
+
+            DigitalDisplay digitalDisplay = vendingMachineController.GetDigitalDisplay();
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetPrice());
         }
 
 
