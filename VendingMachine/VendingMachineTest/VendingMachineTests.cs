@@ -10,7 +10,7 @@ namespace VendingMachineTest
         public void TestVendingMachineAcceptsCoins(){
 
             CoinAccepter coinAccepter = new CoinAccepter();
-            coinAccepter.AcceptCoint(CoinAccepter.Coin.Dime);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
 
             float testCurrentDeposit = .10f;
 
@@ -22,13 +22,13 @@ namespace VendingMachineTest
        public void TestVendingMachineDoesNotAcceptInvalidCoins(){
 
             CoinAccepter coinAccepter = new CoinAccepter();
-            coinAccepter.AcceptCoint(CoinAccepter.Coin.Penny);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Penny);
 
             float testCurrentDeposit = 0;
 
             Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
 
-            coinAccepter.AcceptCoint(CoinAccepter.Coin.CanadianQuarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.CanadianQuarter);
 
             Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
         }
@@ -39,7 +39,7 @@ namespace VendingMachineTest
             CoinAccepter coinAccepter = new CoinAccepter();
             DigitalDisplay digitalDisplay = new DigitalDisplay(coinAccepter);
 
-            coinAccepter.AcceptCoint(CoinAccepter.Coin.Nickle);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Nickle);
 
             string testDisplayOutput = "$0.05";
 
@@ -58,12 +58,21 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineControllerObject(){
+        public void TestVendingMachineControllerObjectConstructor(){
                         
-            VendingMachineController vendingMachineController = new VendingMachineNS.VendingMachineController();
+            VendingMachineController vendingMachineController = new VendingMachineController();
 
             Assert.IsNotNull(vendingMachineController.GetDigitalDisplay());
             Assert.IsNotNull(vendingMachineController.GetCoinAccepter());
+            Assert.IsNotNull(vendingMachineController.GetControlPanel());
         }
+
+        [TestMethod]
+        public void TestVendingMachineControlPanelUpdatesDisplayWithPrice(){
+
+        
+        }
+
+
     }
 }

@@ -18,7 +18,7 @@
 
         }
 
-        public void AcceptCoint(CoinAccepter.Coin coin){
+        public void AcceptCoin(CoinAccepter.Coin coin){
 
             switch (coin){
 
