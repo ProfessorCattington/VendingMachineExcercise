@@ -4,7 +4,7 @@
 
         private VendingMachineController m_vendingMachineController;
         private string m_displayDepositAmount;
-        private string m_displayPriceAmount;
+        private string m_displayMessage;
 
         public DigitalDisplay(VendingMachineController vendingMachineController){
 
@@ -25,14 +25,19 @@
             return m_displayDepositAmount;
         }
 
-        public void SetPrice(float price){
+        public void SetMessage(float price){
 
-            m_displayPriceAmount = "PRICE " + price.ToString("C2");
+            m_displayMessage = "PRICE " + price.ToString("C2");
         }
 
-        public string GetPrice(){
+        public void SayThankYou(){
 
-            return m_displayPriceAmount;
+            m_displayMessage ="THANK YOU";
+        }
+
+        public string GetMessage(){
+
+            return m_displayMessage;
         }
     }
 }

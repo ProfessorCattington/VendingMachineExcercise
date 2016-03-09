@@ -101,17 +101,17 @@ namespace VendingMachineTest
             string testDisplayOutput = "$0.65";
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetPrice());
+            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
 
             testDisplayOutput = "$0.50";
 
             controlPanel.UserPushedChipsButton();
-            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetPrice());
+            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
 
             testDisplayOutput = "$1.00";
 
             controlPanel.UserPushedColaButton();
-            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetPrice());
+            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
         }
 
         [TestMethod]
@@ -121,9 +121,28 @@ namespace VendingMachineTest
 
             ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
 
-            string testProduct = "None";
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            string testProduct = "Cola";
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedColaButton();
 
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+        }
+
+        [TestMethod]
+        public void TestVendingMachineThanksCustomerAfterAPurchase()
+        {
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
 
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
@@ -132,12 +151,14 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            testProduct = "Cola";
-
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedColaButton();
 
-            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+            string testMessage = "THANK YOU";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
         }
     }
 }

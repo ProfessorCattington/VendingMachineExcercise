@@ -24,7 +24,7 @@ namespace VendingMachineNS {
 
                 DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
 
-                digitalDisplay.SetPrice(m_candyPrice);
+                digitalDisplay.SetMessage(m_candyPrice);
             }
         }
 
@@ -37,7 +37,7 @@ namespace VendingMachineNS {
             if (currentDeposit < m_chipsPrice){
 
                 DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SetPrice(m_chipsPrice);
+                digitalDisplay.SetMessage(m_chipsPrice);
             }
 
         }
@@ -52,14 +52,17 @@ namespace VendingMachineNS {
             if (currentDeposit < m_colaPrice){
 
                 DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SetPrice(m_colaPrice);
+                digitalDisplay.SetMessage(m_colaPrice);
             }
 
             else {
 
                 ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
                 productDispenser.SetLastProductDispensed("Cola");
-           
+
+                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+                digitalDisplay.SayThankYou();
+
             }
 
         }
