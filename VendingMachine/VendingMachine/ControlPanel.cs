@@ -3,16 +3,18 @@ namespace VendingMachineNS {
 
     public class ControlPanel{
 
-        private DigitalDisplay m_digitalDisplay;
+        private VendingMachineController m_vendingMachineController;
 
-        public ControlPanel(DigitalDisplay digitalDisplay) {
+        public ControlPanel(VendingMachineController vendingMachineController) {
 
-            m_digitalDisplay = digitalDisplay;
+            m_vendingMachineController = vendingMachineController;
         }
 
         public void UserPushedCandyButton(){
 
-            m_digitalDisplay.SetPrice("$0.65");
+            DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+            
+            digitalDisplay.SetPrice("$0.65");
         }
     }
 }

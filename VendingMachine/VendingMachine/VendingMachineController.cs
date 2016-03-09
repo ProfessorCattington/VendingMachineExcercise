@@ -10,8 +10,8 @@ namespace VendingMachineNS {
         public VendingMachineController(){
 
             m_coinAcceptor = new CoinAccepter();
-            m_digitalDisplay = new DigitalDisplay(m_coinAcceptor);
-            m_controlPanel = new ControlPanel(m_digitalDisplay);
+            m_digitalDisplay = new DigitalDisplay(this);
+            m_controlPanel = new ControlPanel(this);
 
         }
 

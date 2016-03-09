@@ -2,18 +2,20 @@
 
    public class DigitalDisplay {
 
-        private CoinAccepter m_coinAccepter;
+        private VendingMachineController m_vendingMachineController;
         private string m_displayDepositAmount;
         private string m_displayPriceAmount;
 
-        public DigitalDisplay(CoinAccepter coinAccepter){
+        public DigitalDisplay(VendingMachineController vendingMachineController){
 
-            m_coinAccepter = coinAccepter;
+            m_vendingMachineController = vendingMachineController;
         }
 
         public string DisplayCurrentDeposit(){
 
-            m_displayDepositAmount = m_coinAccepter.GetCurrentDeposit().ToString("C2");
+            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+
+            m_displayDepositAmount = coinAccepter.GetCurrentDeposit().ToString("C2");
 
             if(m_displayDepositAmount == "$0.00"){
 

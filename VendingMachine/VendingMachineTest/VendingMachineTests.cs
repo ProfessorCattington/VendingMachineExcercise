@@ -6,10 +6,24 @@ namespace VendingMachineTest
     [TestClass]
     public class VendingMachineTests
     {
+        private VendingMachineController testVendingMachineController;
+
+        [TestMethod]
+        public void TestVendingMachineControllerObjectConstructor()
+        {
+
+            testVendingMachineController = new VendingMachineController();
+
+            Assert.IsNotNull(testVendingMachineController.GetDigitalDisplay());
+            Assert.IsNotNull(testVendingMachineController.GetCoinAccepter());
+            Assert.IsNotNull(testVendingMachineController.GetControlPanel());
+        }
+
         [TestMethod]
         public void TestVendingMachineAcceptsCoins(){
 
-            CoinAccepter coinAccepter = new CoinAccepter();
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
 
             float testCurrentDeposit = .10f;
@@ -21,7 +35,9 @@ namespace VendingMachineTest
        [TestMethod]
        public void TestVendingMachineDoesNotAcceptInvalidCoins(){
 
-            CoinAccepter coinAccepter = new CoinAccepter();
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Penny);
 
             float testCurrentDeposit = 0;
@@ -36,12 +52,14 @@ namespace VendingMachineTest
         [TestMethod]
         public void TestVendingMachineUpdatesDisplayWhenCoinIsAdded(){
 
-            CoinAccepter coinAccepter = new CoinAccepter();
-            DigitalDisplay digitalDisplay = new DigitalDisplay(coinAccepter);
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Nickle);
 
             string testDisplayOutput = "$0.05";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
         }
@@ -49,35 +67,27 @@ namespace VendingMachineTest
         [TestMethod]
         public void TestVendingMachineDisplayUpdatesDisplayWhenNoCoinsAreInserted(){
 
-            CoinAccepter coinAccepter = new CoinAccepter();
-            DigitalDisplay digitalDisplay = new DigitalDisplay(coinAccepter);
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
             string testDisplayOutput = "INSERT COIN";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
         }
 
         [TestMethod]
-        public void TestVendingMachineControllerObjectConstructor(){
-                        
-            VendingMachineController vendingMachineController = new VendingMachineController();
-
-            Assert.IsNotNull(vendingMachineController.GetDigitalDisplay());
-            Assert.IsNotNull(vendingMachineController.GetCoinAccepter());
-            Assert.IsNotNull(vendingMachineController.GetControlPanel());
-        }
-
-        [TestMethod]
         public void TestVendingMachineControlPanelUpdatesDisplayWithPrice(){
 
-            VendingMachineController vendingMachineController = new VendingMachineController();
+            testVendingMachineController = new VendingMachineController();
 
-            ControlPanel controlPanel = vendingMachineController.GetControlPanel();
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedCandyButton();
 
             string testDisplayOutput = "$0.65";
 
-            DigitalDisplay digitalDisplay = vendingMachineController.GetDigitalDisplay();
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
             Assert.AreEqual(testDisplayOutput, digitalDisplay.GetPrice());
         }
 
