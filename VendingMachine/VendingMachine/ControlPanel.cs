@@ -26,6 +26,16 @@ namespace VendingMachineNS {
 
                 digitalDisplay.SetMessage(m_candyPrice);
             }
+            else
+            {
+
+                ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
+                productDispenser.SetLastProductDispensed("Candy");
+
+                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+                digitalDisplay.SayThankYou();
+
+            }
         }
 
         public void UserPushedChipsButton(){
@@ -38,6 +48,16 @@ namespace VendingMachineNS {
 
                 DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
                 digitalDisplay.SetMessage(m_chipsPrice);
+            }
+            else
+            {
+
+                ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
+                productDispenser.SetLastProductDispensed("Chips");
+
+                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+                digitalDisplay.SayThankYou();
+
             }
 
         }

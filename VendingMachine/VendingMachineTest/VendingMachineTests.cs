@@ -137,8 +137,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineThanksCustomerAfterAPurchase()
-        {
+        public void TestVendingMachineThanksCustomerAfterAPurchase(){
 
             testVendingMachineController = new VendingMachineController();
 
@@ -159,6 +158,44 @@ namespace VendingMachineTest
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
+        }
+
+        [TestMethod]
+        public void TestAllProductsCanBePurchased(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+  
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedColaButton();
+
+            string testProduct = "Cola";
+            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            controlPanel.UserPushedCandyButton();
+
+            testProduct = "Candy";
+            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            controlPanel.UserPushedChipsButton();
+
+            testProduct = "Chips";
+            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
         }
     }
 }
