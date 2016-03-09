@@ -47,6 +47,15 @@
             return m_currentDeposit;
         }
 
+        public void CheckIfWeOweTheUserChange(float productCost){
+
+            if(productCost < m_currentDeposit){
+
+                float m_changeOnLastPurchase = m_currentDeposit - productCost;
+            }
+
+        }
+
         public string GetChangeOnLastPurchase(){
 
             return m_changeOnLastPurchase.ToString("C2");
