@@ -19,12 +19,16 @@ namespace VendingMachineTest
         }
 
        [TestMethod]
-       public void TestVendingMachineDoesNotAcceptPennies(){
+       public void TestVendingMachineDoesNotAcceptInvalidCoins(){
 
             CoinAccepter coinAccepter = new CoinAccepter();
             coinAccepter.AcceptCoint(CoinAccepter.Coin.Penny);
 
             float testCurrentDeposit = 0;
+
+            Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
+
+            coinAccepter.AcceptCoint(CoinAccepter.Coin.CanadianQuarter);
 
             Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
         }

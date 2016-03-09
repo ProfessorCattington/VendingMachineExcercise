@@ -6,10 +6,11 @@
 
         public enum Coin{
 
-            Penny = 1,
-            Nickle = 5,
-            Dime = 10,
-            Quarter = 25
+            Penny,
+            Nickle,
+            Dime,
+            Quarter,
+            CanadianQuarter
         }
 
         public CoinAccepter(){
@@ -19,11 +20,24 @@
 
         public void AcceptCoint(CoinAccepter.Coin coin){
 
-            if(coin != CoinAccepter.Coin.Penny){
+            switch (coin){
 
-                float depositedCoinValue = (float)coin / 100;
-       
-                m_currentDeposit += depositedCoinValue;
+                case Coin.Nickle:
+
+                    m_currentDeposit += .05f;
+                    break;
+
+                case Coin.Dime:
+                    m_currentDeposit += .1f;
+                    break;
+
+                case Coin.Quarter:
+                    m_currentDeposit += .25f;
+                    break;
+
+                default:
+
+                    break;
             }
         }
 
