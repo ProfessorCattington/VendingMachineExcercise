@@ -38,7 +38,7 @@ namespace VendingMachineTest
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
-            string testDisplayOutput = "INSERT COIN";
+            string testDisplayOutput = "INSERT COINS";
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
@@ -196,6 +196,50 @@ namespace VendingMachineTest
 
             testProduct = "Chips";
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+        }
+
+        [TestMethod]
+        public void TestThankYouMessageDoesntPersist(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testMessage = "THANK YOU";
+
+            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
+
+            System.DateTime purchaseTime = System.DateTime.Now;
+            System.DateTime currentTime;
+
+            bool waiting = true;
+            while (waiting){
+
+                currentTime = System.DateTime.Now;
+                long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
+
+                System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
+
+                if (timeSpan.Seconds > 5){
+
+                    waiting = false;
+                }
+            }
+
+            testMessage = "INSERT COINS";
+            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
         }
     }
 }

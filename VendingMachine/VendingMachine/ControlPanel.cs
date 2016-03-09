@@ -36,43 +36,43 @@ namespace VendingMachineNS {
 
                     if (currentDeposit < m_candyPrice){
 
-                        digitalDisplay.SetMessage(m_candyPrice);
+                        digitalDisplay.SetMessage("PRICE " + m_candyPrice.ToString("C2"));
                     }
 
                     else{
 
                         productDispenser.SetLastProductDispensed("Candy");
-                        digitalDisplay.SayThankYou();
+                        digitalDisplay.UserMadeAPurchase();
 
                     }
                     break;
 
                 case buttons.chip:
 
-                    if (currentDeposit < m_candyPrice){
+                    if (currentDeposit < m_chipsPrice){
 
-                        digitalDisplay.SetMessage(m_chipsPrice);
+                        digitalDisplay.SetMessage("PRICE " + m_chipsPrice.ToString("C2"));
                     }
 
                     else{
 
                         productDispenser.SetLastProductDispensed("Chips");
-                        digitalDisplay.SayThankYou();
+                        digitalDisplay.UserMadeAPurchase();
 
                     }
                     break;
 
                 case buttons.cola:
 
-                    if (currentDeposit < m_candyPrice){
+                    if (currentDeposit < m_colaPrice){
 
-                        digitalDisplay.SetMessage(m_colaPrice);
+                        digitalDisplay.SetMessage("PRICE " + m_colaPrice.ToString("C2"));
                     }
 
                     else{
 
                         productDispenser.SetLastProductDispensed("Cola");
-                        digitalDisplay.SayThankYou();
+                        digitalDisplay.UserMadeAPurchase();
                     }
                     break;
 
