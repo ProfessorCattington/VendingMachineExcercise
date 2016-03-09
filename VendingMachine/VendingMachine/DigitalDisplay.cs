@@ -25,9 +25,9 @@
             return m_displayDepositAmount;
         }
 
-        public void SetPrice(string price){
+        public void SetPrice(float price){
 
-            m_displayPriceAmount = price;
+            m_displayPriceAmount = price.ToString("C2");
         }
 
         public string GetPrice(){

@@ -33,7 +33,7 @@ namespace VendingMachineTest
         }
 
        [TestMethod]
-       public void TestVendingMachineDoesNotAcceptInvalidCoins(){
+       public void TestVendingMachineCoinAccepterDoesNotAcceptInvalidCoins(){
 
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
@@ -50,7 +50,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineUpdatesDisplayWhenCoinIsAdded(){
+        public void TestVendingMachineDisplayUpdatesWhenCoinIsAdded(){
 
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
@@ -78,7 +78,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineControlPanelUpdatesDisplayWithPrice(){
+        public void TestVendingMachineControlPanelUpdatesDisplayWithPriceWhenNoMoneyIsDeposited(){
 
             testVendingMachineController = new VendingMachineController();
 
