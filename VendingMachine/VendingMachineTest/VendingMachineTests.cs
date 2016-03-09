@@ -20,7 +20,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestProductDispenserDispensesProduct(){
+        public void TestProductDispenserHasNotDispensedOnInitialization(){
 
             testVendingMachineController = new VendingMachineController();
 
@@ -29,7 +29,20 @@ namespace VendingMachineTest
             string testLastDispensedProducted = "None";
 
             Assert.AreEqual(testLastDispensedProducted, productDispenser.GetLastProductDispensed());
+        }
 
+        [TestMethod]
+        public void TestVendingMachineDisplayUpdatesDisplayWhenNoCoinsAreInserted()
+        {
+
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            string testDisplayOutput = "INSERT COIN";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
         }
 
         [TestMethod]
@@ -78,19 +91,6 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineDisplayUpdatesDisplayWhenNoCoinsAreInserted(){
-
-            testVendingMachineController = new VendingMachineController();
-            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
-
-            string testDisplayOutput = "INSERT COIN";
-
-            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
-        }
-
-        [TestMethod]
         public void TestVendingMachineControlPanelUpdatesDisplayWithPriceWhenNoMoneyIsDeposited(){
 
             testVendingMachineController = new VendingMachineController();
@@ -112,6 +112,32 @@ namespace VendingMachineTest
 
             controlPanel.UserPushedColaButton();
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetPrice());
+        }
+
+        [TestMethod]
+        public void TestVendingMachineDispensesColaWhenEnoughMoneyIsDepositedAndColaButtonIsPressed(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            string testProduct = "None";
+
+            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            testProduct = "Cola";
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedColaButton();
+
+            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
         }
     }
 }

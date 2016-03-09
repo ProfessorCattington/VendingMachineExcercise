@@ -15,5 +15,10 @@ namespace VendingMachineNS{
 
             return m_lastProductDispensed;
         }
+
+        public void SetLastProductDispensed(string product){
+
+            m_lastProductDispensed = product;
+        }
     }
 }

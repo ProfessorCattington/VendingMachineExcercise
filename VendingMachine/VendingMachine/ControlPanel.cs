@@ -34,11 +34,9 @@ namespace VendingMachineNS {
 
             float currentDeposit = coinAccepter.GetCurrentDeposit();
 
-            if (currentDeposit < m_chipsPrice)
-            {
+            if (currentDeposit < m_chipsPrice){
 
                 DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-
                 digitalDisplay.SetPrice(m_chipsPrice);
             }
 
@@ -51,12 +49,17 @@ namespace VendingMachineNS {
 
             float currentDeposit = coinAccepter.GetCurrentDeposit();
 
-            if (currentDeposit < m_colaPrice)
-            {
+            if (currentDeposit < m_colaPrice){
 
                 DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-
                 digitalDisplay.SetPrice(m_colaPrice);
+            }
+
+            else {
+
+                ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
+                productDispenser.SetLastProductDispensed("Cola");
+           
             }
 
         }
