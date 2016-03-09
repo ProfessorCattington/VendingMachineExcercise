@@ -27,5 +27,38 @@ namespace VendingMachineNS {
                 digitalDisplay.SetPrice(m_candyPrice);
             }
         }
+
+        public void UserPushedChipsButton(){
+
+            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+
+            float currentDeposit = coinAccepter.GetCurrentDeposit();
+
+            if (currentDeposit < m_chipsPrice)
+            {
+
+                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+
+                digitalDisplay.SetPrice(m_chipsPrice);
+            }
+
+        }
+
+        public void UserPushedColaButton()
+        {
+
+            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+
+            float currentDeposit = coinAccepter.GetCurrentDeposit();
+
+            if (currentDeposit < m_colaPrice)
+            {
+
+                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+
+                digitalDisplay.SetPrice(m_colaPrice);
+            }
+
+        }
     }
 }

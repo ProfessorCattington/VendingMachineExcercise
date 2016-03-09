@@ -89,6 +89,16 @@ namespace VendingMachineTest
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
             Assert.AreEqual(testDisplayOutput, digitalDisplay.GetPrice());
+
+            testDisplayOutput = "$0.50";
+
+            controlPanel.UserPushedChipsButton();
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetPrice());
+
+            testDisplayOutput = "$1.00";
+
+            controlPanel.UserPushedColaButton();
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetPrice());
         }
 
 
