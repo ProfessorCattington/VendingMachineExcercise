@@ -30,8 +30,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineUpdatesDisplayWhenCoinIsAdded()
-        {
+        public void TestVendingMachineUpdatesDisplayWhenCoinIsAdded(){
 
             CoinAccepter coinAccepter = new CoinAccepter();
             DigitalDisplay digitalDisplay = new DigitalDisplay(coinAccepter);
@@ -39,6 +38,17 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoint(CoinAccepter.Coin.Nickle);
 
             string testDisplayOutput = "$0.05";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetDisplayOutput());
+        }
+
+        [TestMethod]
+        public void TestVendingMachineDisplayUpdatesDisplayWhenNoCoinsAreInserted(){
+
+            CoinAccepter coinAccepter = new CoinAccepter();
+            DigitalDisplay digitalDisplay = new DigitalDisplay(coinAccepter);
+
+            string testDisplayOutput = "INSERT COIN";
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.GetDisplayOutput());
         }
