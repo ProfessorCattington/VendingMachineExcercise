@@ -27,7 +27,7 @@
 
         public void SetPrice(float price){
 
-            m_displayPriceAmount = price.ToString("C2");
+            m_displayPriceAmount = "PRICE " + price.ToString("C2");
         }
 
         public string GetPrice(){
