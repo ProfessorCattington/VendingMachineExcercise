@@ -11,7 +11,7 @@ namespace VendingMachineTest
         public void TestVendingMachineAcceptsCoins(){
 
             CoinAccepter coinAccepter = new CoinAccepter();
-            coinAccepter.AcceptCoint();
+            coinAccepter.AcceptCoint(CoinAccepter.Coin.Dime);
 
             float testCurrentDeposit = .10f;
 

@@ -13,14 +13,24 @@ namespace VendingMachineNS
 
         private float m_currentDeposit = 0;
 
+        public enum Coin{
+
+            Penny = 1,
+            Nickle = 5,
+            Dime = 10,
+            Quarter = 25
+        }
+
         public CoinAccepter(){
 
 
         }
 
-        public void AcceptCoint(){
+        public void AcceptCoint(CoinAccepter.Coin coin){
 
-            m_currentDeposit += .10f;
+            float depositedCoinValue = (float)coin / 100;
+
+            m_currentDeposit += depositedCoinValue;
         }
 
         public float GetCurrentDeposit(){
