@@ -115,6 +115,28 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
+        public void TestVendingMachineDisplayDisplaysPriceWhenNotEnoughMoneyIsDeposited(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "PRICE $1.00";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetMessage());
+        }
+
+        [TestMethod]
         public void TestVendingMachineDispensesColaWhenEnoughMoneyIsDepositedAndColaButtonIsPressed(){
 
             testVendingMachineController = new VendingMachineController();
@@ -241,5 +263,6 @@ namespace VendingMachineTest
             testMessage = "INSERT COINS";
             Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
         }
+
     }
 }
