@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using VendingMachineNS;
 
 namespace VendingMachineTest
 {
@@ -6,8 +8,15 @@ namespace VendingMachineTest
     public class VendingMachineTests
     {
         [TestMethod]
-        public void TestMethod1()
-        {
+        public void TestVendingMachineAcceptsCoins(){
+
+            CoinAccepter coinAccepter = new CoinAccepter();
+            coinAccepter.AcceptCoint();
+
+            float testCurrentDeposit = .10f;
+
+            Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
+
         }
     }
 }

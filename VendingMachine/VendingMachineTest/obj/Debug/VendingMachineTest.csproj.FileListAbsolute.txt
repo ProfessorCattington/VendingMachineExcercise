@@ -1,0 +1,7 @@
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\obj\Debug\VendingMachineTest.csprojResolveAssemblyReference.cache
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\bin\Debug\VendingMachineTest.dll
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\bin\Debug\VendingMachineTest.pdb
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\bin\Debug\VendingMachine.exe
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\bin\Debug\VendingMachine.pdb
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\obj\Debug\VendingMachineTest.dll
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachineTest\obj\Debug\VendingMachineTest.pdb

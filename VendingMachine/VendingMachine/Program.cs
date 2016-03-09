@@ -1,7 +1,7 @@
-﻿namespace VendingMachine
+﻿namespace VendingMachineNS
 {
-    class Application
-    {
+    class Application{
+
         static void Main(string[] args)
         {
         }

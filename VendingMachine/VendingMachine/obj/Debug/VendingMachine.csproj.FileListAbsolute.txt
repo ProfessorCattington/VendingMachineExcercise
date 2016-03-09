@@ -1,1 +1,7 @@
 c:\users\mike\documents\visual studio 2015\Projects\VendingMachine\VendingMachine\bin\Debug\VendingMachine.exe.config
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachine\bin\Debug\VendingMachine.exe.config
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachine\bin\Debug\VendingMachine.exe
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachine\bin\Debug\VendingMachine.pdb
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachine\obj\Debug\VendingMachine.csprojResolveAssemblyReference.cache
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachine\obj\Debug\VendingMachine.exe
+C:\cygwin64\home\Mike\VendingMachine\VendingMachine\VendingMachine\obj\Debug\VendingMachine.pdb
