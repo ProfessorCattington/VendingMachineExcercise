@@ -285,6 +285,16 @@ namespace VendingMachineTest
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
 
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
+
+            testChangeReturned = "$0.35";
+
+            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
         }
     }
 }

@@ -3,7 +3,7 @@
     public class CoinAccepter{
 
         private float m_currentDeposit = 0;
-        private float m_changeOnLastPurchase = 0.5f;
+        private float m_changeOnLastPurchase = 0;
 
         public enum Coin{
 
@@ -51,7 +51,8 @@
 
             if(productCost < m_currentDeposit){
 
-                float m_changeOnLastPurchase = m_currentDeposit - productCost;
+                m_changeOnLastPurchase = m_currentDeposit - productCost;
+                m_currentDeposit = 0;
             }
 
         }

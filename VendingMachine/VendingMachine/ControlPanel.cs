@@ -43,8 +43,7 @@ namespace VendingMachineNS {
 
                         productDispenser.SetLastProductDispensed("Candy");
                         digitalDisplay.UserMadeAPurchase();
-                        
-
+                        coinAccepter.CheckIfWeOweTheUserChange(m_candyPrice);
                     }
                     break;
 
@@ -74,6 +73,7 @@ namespace VendingMachineNS {
 
                         productDispenser.SetLastProductDispensed("Cola");
                         digitalDisplay.UserMadeAPurchase();
+                        coinAccepter.CheckIfWeOweTheUserChange(m_colaPrice);
                     }
                     break;
 
