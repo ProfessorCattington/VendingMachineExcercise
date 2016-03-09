@@ -7,6 +7,13 @@ namespace VendingMachineNS {
         private const float m_colaPrice = 1.0f;
         private const float m_chipsPrice = 0.5f;
 
+        public enum buttons{
+
+            candy,
+            chip,
+            cola
+        }
+
         private VendingMachineController m_vendingMachineController;
 
         public ControlPanel(VendingMachineController vendingMachineController) {
@@ -14,77 +21,65 @@ namespace VendingMachineNS {
             m_vendingMachineController = vendingMachineController;
         }
 
-        public void UserPushedCandyButton(){
+        public void UserPushedAButton(buttons button){
 
             CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-
             float currentDeposit = coinAccepter.GetCurrentDeposit();
 
-            if(currentDeposit < m_candyPrice){
+            DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+            ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
 
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-
-                digitalDisplay.SetMessage(m_candyPrice);
-            }
-            else
+            switch (button)
             {
 
-                ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
-                productDispenser.SetLastProductDispensed("Candy");
+                case buttons.candy:
 
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SayThankYou();
+                    if (currentDeposit < m_candyPrice){
 
-            }
-        }
+                        digitalDisplay.SetMessage(m_candyPrice);
+                    }
 
-        public void UserPushedChipsButton(){
+                    else{
 
-            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+                        productDispenser.SetLastProductDispensed("Candy");
+                        digitalDisplay.SayThankYou();
 
-            float currentDeposit = coinAccepter.GetCurrentDeposit();
+                    }
+                    break;
 
-            if (currentDeposit < m_chipsPrice){
+                case buttons.chip:
 
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SetMessage(m_chipsPrice);
-            }
-            else
-            {
+                    if (currentDeposit < m_candyPrice){
 
-                ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
-                productDispenser.SetLastProductDispensed("Chips");
+                        digitalDisplay.SetMessage(m_chipsPrice);
+                    }
 
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SayThankYou();
+                    else{
 
-            }
+                        productDispenser.SetLastProductDispensed("Chips");
+                        digitalDisplay.SayThankYou();
 
-        }
+                    }
+                    break;
 
-        public void UserPushedColaButton()
-        {
+                case buttons.cola:
 
-            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+                    if (currentDeposit < m_candyPrice){
 
-            float currentDeposit = coinAccepter.GetCurrentDeposit();
+                        digitalDisplay.SetMessage(m_colaPrice);
+                    }
 
-            if (currentDeposit < m_colaPrice){
+                    else{
 
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SetMessage(m_colaPrice);
-            }
+                        productDispenser.SetLastProductDispensed("Cola");
+                        digitalDisplay.SayThankYou();
+                    }
+                    break;
 
-            else {
-
-                ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
-                productDispenser.SetLastProductDispensed("Cola");
-
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SayThankYou();
+                default:
+                    break;
 
             }
-
         }
     }
 }

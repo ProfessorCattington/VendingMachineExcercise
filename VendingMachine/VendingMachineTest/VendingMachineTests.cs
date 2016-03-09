@@ -96,7 +96,7 @@ namespace VendingMachineTest
             testVendingMachineController = new VendingMachineController();
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedCandyButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
 
             string testDisplayOutput = "$0.65";
 
@@ -105,12 +105,12 @@ namespace VendingMachineTest
 
             testDisplayOutput = "$0.50";
 
-            controlPanel.UserPushedChipsButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
 
             testDisplayOutput = "$1.00";
 
-            controlPanel.UserPushedColaButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
         }
 
@@ -131,7 +131,7 @@ namespace VendingMachineTest
             string testProduct = "Cola";
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedColaButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
 
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
         }
@@ -151,7 +151,7 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedColaButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
 
             string testMessage = "THANK YOU";
 
@@ -175,7 +175,7 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedColaButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
 
             string testProduct = "Cola";
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
@@ -184,7 +184,7 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            controlPanel.UserPushedCandyButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
 
             testProduct = "Candy";
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
@@ -192,7 +192,7 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            controlPanel.UserPushedChipsButton();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
 
             testProduct = "Chips";
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
