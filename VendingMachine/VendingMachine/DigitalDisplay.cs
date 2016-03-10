@@ -100,6 +100,7 @@
                         else {
 
                             m_currentState = displayState.insertCoins;
+                            m_displayMessage = "INSERT COINS";
                         }
                     }
 
@@ -109,7 +110,6 @@
 
                     if (timeSpan.Seconds < 3){
 
-                        m_displayMessage = "THANK YOU";
                     }
                     else{
 
@@ -123,12 +123,23 @@
 
                     if (timeSpan.Seconds < 3){
 
-                        m_displayMessage = "SOLD OUT";
+                      
                     }
                     else{
 
-                        m_currentState = displayState.insertCoins;
-                        m_displayMessage = "INSERT COINS";
+                        CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+                        float depositAmount = coinAccepter.GetCurrentDeposit();
+
+                        if (depositAmount > 0){
+
+                            m_currentState = displayState.displayDeposit;
+                            m_displayMessage = depositAmount.ToString("C2");
+                        }
+                        else{
+
+                            m_currentState = displayState.insertCoins;
+                            m_displayMessage = "INSERT COINS";
+                        }
                     }
 
                     break;

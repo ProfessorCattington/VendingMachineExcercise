@@ -20,7 +20,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestIfVendingMachineComponentsHaveAReferenceToTheSameVendingMachineController(){
+        public void TestIfVendingMachineComponentsHaveAReferenceToTheSameVendingMachineController() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -38,7 +38,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestProductDispenserHasNotDispensedOnInitialization(){
+        public void TestProductDispenserHasNotDispensedOnInitialization() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -64,7 +64,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineAcceptsCoins(){
+        public void TestVendingMachineAcceptsCoins() {
 
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
@@ -76,8 +76,8 @@ namespace VendingMachineTest
 
         }
 
-       [TestMethod]
-       public void TestVendingMachineCoinAccepterDoesNotAcceptInvalidCoins(){
+        [TestMethod]
+        public void TestVendingMachineCoinAccepterDoesNotAcceptInvalidCoins() {
 
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
@@ -94,7 +94,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineDisplayUpdatesWhenCoinIsAdded(){
+        public void TestVendingMachineDisplayUpdatesWhenCoinIsAdded() {
 
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
@@ -109,7 +109,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineControlPanelUpdatesDisplayWithPriceWhenNoMoneyIsDeposited(){
+        public void TestVendingMachineControlPanelUpdatesDisplayWithPriceWhenNoMoneyIsDeposited() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -133,7 +133,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineDisplayDisplaysPriceWhenNotEnoughMoneyIsDeposited(){
+        public void TestVendingMachineDisplayDisplaysPriceWhenNotEnoughMoneyIsDeposited() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -155,7 +155,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineDispensesColaWhenEnoughMoneyIsDepositedAndColaButtonIsPressed(){
+        public void TestVendingMachineDispensesColaWhenEnoughMoneyIsDepositedAndColaButtonIsPressed() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -177,7 +177,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineThanksCustomerAfterAPurchase(){
+        public void TestVendingMachineThanksCustomerAfterAPurchase() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -201,12 +201,12 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestAllProductsCanBePurchased(){
+        public void TestAllProductsCanBePurchased() {
 
             testVendingMachineController = new VendingMachineController();
 
             ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
-  
+
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -239,7 +239,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestThankYouMessageDoesntPersist(){
+        public void TestThankYouMessageDoesntPersist() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -265,14 +265,14 @@ namespace VendingMachineTest
             System.DateTime currentTime;
 
             bool waiting = true;
-            while (waiting){
+            while (waiting) {
 
                 currentTime = System.DateTime.Now;
                 long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
 
                 System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
 
-                if (timeSpan.Seconds > 4){
+                if (timeSpan.Seconds > 4) {
 
                     waiting = false;
                 }
@@ -283,7 +283,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineReturnsChangeToUser(){
+        public void TestVendingMachineReturnsChangeToUser() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -316,7 +316,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineReturnsChangeIfNoPurchaseIsMade(){
+        public void TestVendingMachineReturnsChangeIfNoPurchaseIsMade() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -342,7 +342,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineDisplayNotifiesUserWhenProductIsSoldOut(){
+        public void TestVendingMachineDisplayNotifiesUserWhenProductIsSoldOut() {
 
             testVendingMachineController = new VendingMachineController();
 
@@ -358,12 +358,27 @@ namespace VendingMachineTest
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
 
+        }
+
+        [TestMethod]
+        public void TestSoldOutMessageDoesntPersistWithoutDeposit() {
+
+            testVendingMachineController = new VendingMachineController();
+
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+            snackBox.SetProductStock("Cola", 0);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
             System.DateTime purchaseTime = System.DateTime.Now;
             System.DateTime currentTime;
 
             bool waiting = true;
             while (waiting){
-            
+
                 currentTime = System.DateTime.Now;
                 long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
 
@@ -375,15 +390,47 @@ namespace VendingMachineTest
                 }
             }
 
-            testDisplayOutput = "INSERT COINS";
+            string testDisplayOutput = "INSERT COINS";
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+        }
+
+        [TestMethod]
+        public void TestSoldOutMessageDoesntPersistWithDeposit(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+            snackBox.SetProductStock("Cola", 0);
 
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            testDisplayOutput = "$0.50";
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            System.DateTime purchaseTime = System.DateTime.Now;
+            System.DateTime currentTime;
+
+            bool waiting = true;
+            while (waiting){
+
+                currentTime = System.DateTime.Now;
+                long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
+
+                System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
+
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            string testDisplayOutput = "$0.50";
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
