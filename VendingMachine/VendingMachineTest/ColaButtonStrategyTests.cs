@@ -34,5 +34,22 @@ namespace VendingMachineTestNS {
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfExactChangeIsRequired()
+        {
+
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(0);
+
+            decimal testProductPrice = 2;
+            ColaButtonStrategy colaButtonStrategy = new ColaButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "EXACT CHANGE ONLY";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+        }
     }
 }

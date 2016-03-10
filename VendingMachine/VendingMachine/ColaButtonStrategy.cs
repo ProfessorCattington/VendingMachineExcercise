@@ -24,6 +24,10 @@ namespace VendingMachineNS {
 
                 digitalDisplay.UserSelectedASoldOutProduct();
             }
+            else if (coinAccepter.WeHaveEnoughForChange(colaPrice)) { 
+            
+                digitalDisplay.UserSelectedExactChangeOnlyProduct();
+            }
         }
 
         public VendingMachineController GetVendingMachineController(){
