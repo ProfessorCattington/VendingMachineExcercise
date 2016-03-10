@@ -24,14 +24,6 @@ namespace VendingMachineNS {
 
         public void UserPushedAButton(buttons button){
 
-            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-            decimal currentDeposit = coinAccepter.GetCurrentDeposit();
-
-            DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-            ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
-            SnackBox snackBox = m_vendingMachineController.GetSnackBox();
-            int productStock;
-
             switch (button){
 
                 case buttons.candy:
@@ -54,9 +46,8 @@ namespace VendingMachineNS {
 
                 case buttons.coinReturn:
 
-                    coinAccepter.UserPressedCoinReturn();
-                    digitalDisplay.UserPressedCoinReturn();
-                    productDispenser.SetLastProductDispensed("None");
+                    new CoinReturnButtonStrategy(m_vendingMachineController);
+
                     break;
 
                 default:
