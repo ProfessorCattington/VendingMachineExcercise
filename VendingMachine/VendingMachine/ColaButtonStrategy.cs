@@ -32,6 +32,12 @@ namespace VendingMachineNS {
 
                 digitalDisplay.UserHasntDepositedEnough(colaPrice.ToString("C2"));
             }
+            else if (productStock > 0){
+
+                productDispenser.SetLastProductDispensed("Cola");
+                digitalDisplay.UserMadeAPurchase();
+                coinAccepter.CheckIfWeOweTheUserChange(colaPrice);
+            }
         }
 
         public VendingMachineController GetVendingMachineController(){
