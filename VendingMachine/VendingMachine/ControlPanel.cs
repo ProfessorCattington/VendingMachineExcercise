@@ -48,27 +48,7 @@ namespace VendingMachineNS {
 
                 case buttons.cola:
 
-                    productStock = snackBox.GetProductStock("Cola");
-
-                    if(productStock == 0){
-
-                        digitalDisplay.UserSelectedASoldOutProduct();
-                    }
-                    else if (coinAccepter.WeHaveEnoughForChange(m_colaPrice)){
-
-                        digitalDisplay.UserSelectedExactChangeOnlyProduct();
-                    }
-                    else if (currentDeposit < m_colaPrice){
-
-                        digitalDisplay.UserHasntDepositedEnough(m_colaPrice.ToString("C2"));
-                    }
-
-                    else if (productStock > 0) { 
-
-                        productDispenser.SetLastProductDispensed("Cola");
-                        digitalDisplay.UserMadeAPurchase();
-                        coinAccepter.CheckIfWeOweTheUserChange(m_colaPrice);
-                    }
+                    new ColaButtonStrategy(m_vendingMachineController, m_colaPrice);
        
                     break;
 
