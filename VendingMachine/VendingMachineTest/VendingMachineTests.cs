@@ -378,6 +378,14 @@ namespace VendingMachineTest
             testDisplayOutput = "INSERT COINS";
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            testDisplayOutput = "$0.50";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
         }
     }
 }
