@@ -92,27 +92,6 @@
 
                     new DisplayPriceStrategy(this);
 
-                    //if(timeSpan.Seconds < 3){
-
-                    //    //do nothing. the output string was set earlier
-                    //}
-                    //else{
-
-                    //    CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-                    //    decimal depositAmount = coinAccepter.GetCurrentDeposit();
-
-                    //    if (depositAmount > 0){
-
-                    //        m_currentState = displayState.displayDeposit;
-                    //        m_displayMessage = depositAmount.ToString("C2");
-                    //    }
-                    //    else {
-
-                    //        m_currentState = displayState.insertCoins;
-                    //        m_displayMessage = "INSERT COINS";
-                    //    }
-                    //}
-
                     break;
 
                 case displayState.thankYou:
