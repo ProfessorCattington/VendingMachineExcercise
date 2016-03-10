@@ -50,6 +50,7 @@
     <Compile Include="ColaButtonStrategy.cs" />
     <Compile Include="ControlPanel.cs" />
     <Compile Include="DigitalDisplay.cs" />
+    <Compile Include="DisplayExactChangeStrategy.cs" />
     <Compile Include="DisplayPriceStrategy.cs" />
     <Compile Include="DisplaySoldOutStrategy.cs" />
     <Compile Include="DisplayThankYouStrategy.cs" />
