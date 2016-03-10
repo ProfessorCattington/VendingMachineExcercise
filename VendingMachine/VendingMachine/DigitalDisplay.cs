@@ -10,10 +10,11 @@
 
         private enum displayState{
 
-            madeAPurchase,
+            thankYou,
             productSoldOut,
             displayPrice,
             insertCoins,
+            exactChange,
             displayDeposit
         }
 
@@ -44,7 +45,7 @@
         public void UserMadeAPurchase(){
 
             m_displayMessage = "THANK YOU";
-            m_currentState = displayState.madeAPurchase;
+            m_currentState = displayState.thankYou;
             m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
@@ -59,6 +60,13 @@
 
             m_displayMessage = "PRICE " + productPrice;
             m_currentState = displayState.displayPrice;
+            m_lastDisplayMessageTime = System.DateTime.Now;
+        }
+
+        public void UserSelectedExactChangeOnlyProduct() {
+
+            m_displayMessage = "EXACT CHANGE ONLY";
+            m_currentState = displayState.exactChange;
             m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
@@ -106,7 +114,7 @@
 
                     break;
 
-                case displayState.madeAPurchase:
+                case displayState.thankYou:
 
                     if (timeSpan.Seconds < 3){
 
@@ -142,6 +150,27 @@
                         }
                     }
 
+                    break;
+
+                case displayState.exactChange:
+
+                    if(timeSpan.Seconds > 3){
+
+                        CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+                        float depositAmount = coinAccepter.GetCurrentDeposit();
+
+                        if (depositAmount > 0){
+
+                            m_currentState = displayState.displayDeposit;
+                            m_displayMessage = depositAmount.ToString("C2");
+                        }
+                        else{
+
+                            m_currentState = displayState.insertCoins;
+                            m_displayMessage = "INSERT COINS";
+                        }
+
+                    }
                     break;
             }
 

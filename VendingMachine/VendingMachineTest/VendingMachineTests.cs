@@ -434,5 +434,27 @@ namespace VendingMachineTest
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
+
+        [TestMethod]
+        public void TestVendingMachineNotifiesExactChangeOnly(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(0);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
+
+            string testDisplayOutput = "EXACT CHANGE ONLY";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+        }
     }
 }

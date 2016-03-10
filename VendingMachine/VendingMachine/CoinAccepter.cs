@@ -5,6 +5,7 @@
         private VendingMachineController m_vendingMachineController;
 
         private float m_currentDeposit = 0;
+        private float m_bank;
         private float m_changeOnLastPurchase = 0;
 
         public enum Coin{
@@ -19,6 +20,7 @@
         public CoinAccepter(VendingMachineController vendingMachineController){
 
             m_vendingMachineController = vendingMachineController;
+            m_bank = 1.00f;
         }
 
         public void AcceptCoin(CoinAccepter.Coin coin){
@@ -52,6 +54,15 @@
         public float GetCurrentDeposit(){
 
             return m_currentDeposit;
+        }
+        public void SetBankAmount(float bank){
+
+            m_bank = bank;
+        }
+
+        public bool WeHaveEnoughForChange(float productCost){
+
+            return (m_bank - productCost < 0) ? true : false;
         }
 
         public void CheckIfWeOweTheUserChange(float productCost){
