@@ -12,10 +12,24 @@ namespace VendingMachineTestNS{
         public void TestButtonPressStrategyReferenceToVendingMachineController(){
 
             testVendingMachineController = new VendingMachineController();
-
-            CandyButtonStrategy candyButtonStrategy = new CandyButtonStrategy(testVendingMachineController);
+            decimal testProductPrice = .5m;
+            CandyButtonStrategy candyButtonStrategy = new CandyButtonStrategy(testVendingMachineController, testProductPrice);
 
             Assert.AreEqual(testVendingMachineController, candyButtonStrategy.GetVendingMachineController());
+        }
+
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfNoMoneyIsDeposited(){
+
+            testVendingMachineController = new VendingMachineController();
+            decimal testProductPrice = 1;
+            CandyButtonStrategy candyButtonStrategy = new CandyButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "PRICE $1.00";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
     }
 }
