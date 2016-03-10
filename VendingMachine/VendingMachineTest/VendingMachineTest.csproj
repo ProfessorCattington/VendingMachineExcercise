@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CandyButtonStrategyTests.cs" />
+    <Compile Include="ChipButtonStrategyTests.cs" />
     <Compile Include="CoinAccepterTests.cs" />
     <Compile Include="ControlPanelTests.cs" />
     <Compile Include="DigitalDisplayTests.cs" />

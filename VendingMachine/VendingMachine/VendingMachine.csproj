@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandyButtonStrategy.cs" />
+    <Compile Include="ChipButtonStrategy.cs" />
     <Compile Include="CoinAccepter.cs" />
     <Compile Include="ControlPanel.cs" />
     <Compile Include="DigitalDisplay.cs" />
