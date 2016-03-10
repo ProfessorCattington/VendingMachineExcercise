@@ -71,11 +71,6 @@
 
         public string DisplayMessage(){
 
-            System.DateTime buttonPressTime = System.DateTime.Now;
-            long buttonPressElapsedTime = buttonPressTime.Ticks - m_lastDisplayMessageTime.Ticks;
-
-            System.TimeSpan timeSpan = new System.TimeSpan(buttonPressElapsedTime);
-
             switch (m_currentState){
 
                 case displayState.displayDeposit:
@@ -108,23 +103,8 @@
 
                 case displayState.exactChange:
 
-                    if(timeSpan.Seconds > 3){
+                    new DisplayExactChangeStrategy(this);
 
-                        CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
-
-                        if (depositAmount > 0){
-
-                            m_currentState = displayState.displayDeposit;
-                            m_displayMessage = depositAmount.ToString("C2");
-                        }
-                        else{
-
-                            m_currentState = displayState.insertCoins;
-                            m_displayMessage = "INSERT COINS";
-                        }
-
-                    }
                     break;
             }
 

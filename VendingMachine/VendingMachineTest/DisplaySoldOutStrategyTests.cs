@@ -24,7 +24,7 @@ namespace VendingMachineTestNS {
         }
 
         [TestMethod]
-        public void TestSoldOutStrategyChangesMessageAfterAShortWait(){
+        public void TestSoldOutStrategyChangesMessageAfterAShortWaitWithDeposit(){
 
             testVendingMachineController = new VendingMachineController();
 
@@ -50,6 +50,34 @@ namespace VendingMachineTestNS {
             DisplaySoldOutStrategy soldOutStrategy = new DisplaySoldOutStrategy(digitalDisplay);
 
             string testDeposit = "$0.10";
+
+            Assert.AreEqual(testDeposit, digitalDisplay.GetCurrentMessage());
+        }
+
+        [TestMethod]
+        public void TestSoldOutStrategyChangesMessageAfterAShortWaitWithoutDeposit(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            digitalDisplay.UserSelectedASoldOutProduct();
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            DisplaySoldOutStrategy soldOutStrategy = new DisplaySoldOutStrategy(digitalDisplay);
+
+            string testDeposit = "INSERT COINS";
 
             Assert.AreEqual(testDeposit, digitalDisplay.GetCurrentMessage());
         }
