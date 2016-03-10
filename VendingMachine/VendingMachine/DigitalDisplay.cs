@@ -8,7 +8,7 @@
 
         private displayState m_currentState = displayState.insertCoins;
 
-        private enum displayState{
+        public enum displayState{
 
             thankYou,
             productSoldOut,
@@ -21,14 +21,7 @@
         public DigitalDisplay(VendingMachineController vendingMachineController){
 
             m_vendingMachineController = vendingMachineController;
-        }
-
-        private string DisplayCurrentDeposit(){
-
-            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-            string displayDepositAmount = coinAccepter.GetCurrentDeposit().ToString("C2");
-
-            return displayDepositAmount;
+            m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
         public void SetMessage(string message){
@@ -186,6 +179,21 @@
         public VendingMachineController GetVendingMachineController(){
 
             return m_vendingMachineController;
+        }
+
+        public System.DateTime GetLastMessageTime(){
+
+            return m_lastDisplayMessageTime;
+        }
+
+        public displayState GetCurrentState(){
+
+            return m_currentState;
+        }
+
+        public string GetCurrentMessage(){
+
+            return m_displayMessage;
         }
     }
 }
