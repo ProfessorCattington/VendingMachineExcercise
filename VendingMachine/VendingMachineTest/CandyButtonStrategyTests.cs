@@ -48,5 +48,51 @@ namespace VendingMachineTestNS{
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
 
         }
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfExactChangeIsRequired(){
+
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(0);
+
+            decimal testProductPrice = 1;
+            CandyButtonStrategy candyButtonStrategy = new CandyButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "EXACT CHANGE ONLY";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+        }
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfCandyIsPuchased(){
+
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            decimal testProductPrice = .85m;
+            CandyButtonStrategy candyButtonStrategy = new CandyButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "THANK YOU";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            string testProductDispensed = "Candy";
+
+            Assert.AreEqual(testProductDispensed, productDispenser.GetLastProductDispensed());
+
+            string testChangeReturned = "$0.15";
+
+            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
+
+        }
     }
 }
