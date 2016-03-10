@@ -28,6 +28,10 @@ namespace VendingMachineNS {
             
                 digitalDisplay.UserSelectedExactChangeOnlyProduct();
             }
+            else if (currentDeposit < colaPrice){
+
+                digitalDisplay.UserHasntDepositedEnough(colaPrice.ToString("C2"));
+            }
         }
 
         public VendingMachineController GetVendingMachineController(){

@@ -35,8 +35,7 @@ namespace VendingMachineTestNS {
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
         [TestMethod]
-        public void TestStrategyHasProperOutcomeIfExactChangeIsRequired()
-        {
+        public void TestStrategyHasProperOutcomeIfExactChangeIsRequired(){
 
             testVendingMachineController = new VendingMachineController();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
@@ -48,6 +47,22 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testDisplayOutput = "EXACT CHANGE ONLY";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+        }
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfNoMoneyIsDeposited(){
+
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(2);
+
+            decimal testProductPrice = 1.5m;
+            ChipButtonStrategy chipButtonStrategy = new ChipButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "PRICE $1.50";
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
