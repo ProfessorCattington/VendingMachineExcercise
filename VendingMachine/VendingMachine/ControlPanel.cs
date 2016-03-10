@@ -43,27 +43,29 @@ namespace VendingMachineNS {
 
                 case buttons.chip:
 
-                    productStock = snackBox.GetProductStock("Chips");
+                    new ChipButtonStrategy(m_vendingMachineController, m_chipsPrice);
 
-                    if (productStock == 0){
+                    //productStock = snackBox.GetProductStock("Chips");
 
-                        digitalDisplay.UserSelectedASoldOutProduct();
-                    }
-                    else if (coinAccepter.WeHaveEnoughForChange(m_chipsPrice)){
+                    //if (productStock == 0){
 
-                        digitalDisplay.UserSelectedExactChangeOnlyProduct();
-                    }
-                    else if (currentDeposit < m_chipsPrice){
+                    //    digitalDisplay.UserSelectedASoldOutProduct();
+                    //}
+                    //else if (coinAccepter.WeHaveEnoughForChange(m_chipsPrice)){
 
-                        digitalDisplay.UserHasntDepositedEnough(m_chipsPrice.ToString("C2"));
-                    }
+                    //    digitalDisplay.UserSelectedExactChangeOnlyProduct();
+                    //}
+                    //else if (currentDeposit < m_chipsPrice){
 
-                    else{
+                    //    digitalDisplay.UserHasntDepositedEnough(m_chipsPrice.ToString("C2"));
+                    //}
 
-                        productDispenser.SetLastProductDispensed("Chips");
-                        digitalDisplay.UserMadeAPurchase();
-                        coinAccepter.CheckIfWeOweTheUserChange(m_chipsPrice);
-                    }
+                    //else{
+
+                    //    productDispenser.SetLastProductDispensed("Chips");
+                    //    digitalDisplay.UserMadeAPurchase();
+                    //    coinAccepter.CheckIfWeOweTheUserChange(m_chipsPrice);
+                    //}
                     break;
 
                 case buttons.cola:
