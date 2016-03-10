@@ -17,5 +17,32 @@ namespace VendingMachineTestNS {
 
             Assert.AreEqual(testVendingMachineController, coinReturnButtonStrategy.GetVendingMachineController());
         }
+        [TestMethod]
+        public void TestCoinReturnButtonCausesCoinsToBeReturnedAndDisplayUpdateButNoProduct(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            CoinReturnButtonStrategy coinReturnButtonStrategy = new CoinReturnButtonStrategy(testVendingMachineController);
+
+            decimal testMoneyReturned = .50m;
+
+            Assert.AreEqual(testMoneyReturned, coinAccepter.GetChangeOnLastPurchase());
+
+            string testDisplayOutput = "INSERT COINS";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+            string testDispensedProduct = "None";
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            Assert.AreEqual(testDispensedProduct, productDispenser.GetLastProductDispensed());
+        }
     }
 }
