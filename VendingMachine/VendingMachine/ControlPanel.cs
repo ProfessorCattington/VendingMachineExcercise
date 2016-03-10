@@ -32,8 +32,7 @@ namespace VendingMachineNS {
             SnackBox snackBox = m_vendingMachineController.GetSnackBox();
             int productStock;
 
-            switch (button)
-            {
+            switch (button){
 
                 case buttons.candy:
 
@@ -45,27 +44,6 @@ namespace VendingMachineNS {
 
                     new ChipButtonStrategy(m_vendingMachineController, m_chipsPrice);
 
-                    //productStock = snackBox.GetProductStock("Chips");
-
-                    //if (productStock == 0){
-
-                    //    digitalDisplay.UserSelectedASoldOutProduct();
-                    //}
-                    //else if (coinAccepter.WeHaveEnoughForChange(m_chipsPrice)){
-
-                    //    digitalDisplay.UserSelectedExactChangeOnlyProduct();
-                    //}
-                    //else if (currentDeposit < m_chipsPrice){
-
-                    //    digitalDisplay.UserHasntDepositedEnough(m_chipsPrice.ToString("C2"));
-                    //}
-
-                    //else{
-
-                    //    productDispenser.SetLastProductDispensed("Chips");
-                    //    digitalDisplay.UserMadeAPurchase();
-                    //    coinAccepter.CheckIfWeOweTheUserChange(m_chipsPrice);
-                    //}
                     break;
 
                 case buttons.cola:
