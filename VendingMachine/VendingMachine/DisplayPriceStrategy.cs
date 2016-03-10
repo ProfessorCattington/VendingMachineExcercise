@@ -31,7 +31,6 @@ namespace VendingMachineNS {
                     digitalDisplay.SetMessage("INSERT COINS");
                 }
             }
-            
         }
     }
 }
