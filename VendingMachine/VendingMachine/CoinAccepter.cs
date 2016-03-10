@@ -4,9 +4,9 @@
 
         private VendingMachineController m_vendingMachineController;
 
-        private float m_currentDeposit = 0;
-        private float m_bank;
-        private float m_changeOnLastPurchase = 0;
+        private decimal m_currentDeposit = 0;
+        private decimal m_bank;
+        private decimal m_changeOnLastPurchase = 0;
 
         public enum Coin{
 
@@ -20,7 +20,7 @@
         public CoinAccepter(VendingMachineController vendingMachineController){
 
             m_vendingMachineController = vendingMachineController;
-            m_bank = 1.00f;
+            m_bank = 1.00m;
         }
 
         public void AcceptCoin(CoinAccepter.Coin coin){
@@ -31,17 +31,17 @@
 
                 case Coin.Nickle:
 
-                    m_currentDeposit += .05f;
+                    m_currentDeposit += .05m;
                     digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 case Coin.Dime:
-                    m_currentDeposit += .1f;
+                    m_currentDeposit += .1m;
                     digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 case Coin.Quarter:
-                    m_currentDeposit += .25f;
+                    m_currentDeposit += .25m;
                     digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
@@ -51,26 +51,26 @@
             }
         }
 
-        public float GetCurrentDeposit(){
+        public decimal GetCurrentDeposit(){
 
             return m_currentDeposit;
         }
-        public void SetBankAmount(float bank){
+        public void SetBankAmount(decimal bank){
 
             m_bank = bank;
         }
 
-        public float GetBankAmount(){
+        public decimal GetBankAmount(){
 
             return m_bank;
         }
 
-        public bool WeHaveEnoughForChange(float productCost){
+        public bool WeHaveEnoughForChange(decimal productCost){
 
             return (m_bank - productCost < 0) ? true : false;
         }
 
-        public void CheckIfWeOweTheUserChange(float productCost){
+        public void CheckIfWeOweTheUserChange(decimal productCost){
 
             if(productCost < m_currentDeposit){
 

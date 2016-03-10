@@ -3,9 +3,9 @@ namespace VendingMachineNS {
 
     public class ControlPanel{
 
-        private const float m_candyPrice = 0.65f;
-        private const float m_colaPrice = 1.0f;
-        private const float m_chipsPrice = 0.5f;
+        private const decimal m_candyPrice = 0.65m;
+        private const decimal m_colaPrice = 1.0m;
+        private const decimal m_chipsPrice = 0.5m;
 
         public enum buttons{
 
@@ -25,7 +25,7 @@ namespace VendingMachineNS {
         public void UserPushedAButton(buttons button){
 
             CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-            float currentDeposit = coinAccepter.GetCurrentDeposit();
+            decimal currentDeposit = coinAccepter.GetCurrentDeposit();
 
             DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
             ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();

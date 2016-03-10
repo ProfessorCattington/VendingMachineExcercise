@@ -15,8 +15,8 @@ namespace VendingMachineTestNS {
 
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
-            float testBankValue = 1.0f;
-            float testDepositValue = 0;
+            decimal testBankValue = 1.0m;
+            decimal testDepositValue = 0;
             string testLastChangeReturnedValue = "$0.00";
 
             Assert.AreEqual(testBankValue, coinAccepter.GetBankAmount());
@@ -31,7 +31,7 @@ namespace VendingMachineTestNS {
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
 
-            float testCurrentDeposit = .10f;
+            decimal testCurrentDeposit = .10m;
 
             Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
 
@@ -45,7 +45,7 @@ namespace VendingMachineTestNS {
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Penny);
 
-            float testCurrentDeposit = 0;
+            decimal testCurrentDeposit = 0;
 
             Assert.AreEqual(testCurrentDeposit, coinAccepter.GetCurrentDeposit());
 

@@ -36,7 +36,7 @@
             m_displayMessage = message;
         }
 
-        public void UserInsertCoins(float deposit){
+        public void UserInsertCoins(decimal deposit){
 
             m_displayMessage = deposit.ToString("C2");
             m_currentState = displayState.displayDeposit;
@@ -104,7 +104,7 @@
                     else{
 
                         CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-                        float depositAmount = coinAccepter.GetCurrentDeposit();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
 
                         if (depositAmount > 0){
 
@@ -142,7 +142,7 @@
                     else{
 
                         CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-                        float depositAmount = coinAccepter.GetCurrentDeposit();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
 
                         if (depositAmount > 0){
 
@@ -163,7 +163,7 @@
                     if(timeSpan.Seconds > 3){
 
                         CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-                        float depositAmount = coinAccepter.GetCurrentDeposit();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
 
                         if (depositAmount > 0){
 
