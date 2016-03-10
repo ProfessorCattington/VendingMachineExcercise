@@ -32,6 +32,12 @@ namespace VendingMachineNS{
 
                 digitalDisplay.UserHasntDepositedEnough(chipsPrice.ToString("C2"));
             }
+            else{
+
+                productDispenser.SetLastProductDispensed("Chips");
+                digitalDisplay.UserMadeAPurchase();
+                coinAccepter.CheckIfWeOweTheUserChange(chipsPrice);
+            }
         }
 
         public VendingMachineController GetVendingMachineController(){

@@ -67,5 +67,32 @@ namespace VendingMachineTestNS {
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfCandyIsPuchased(){
+
+            testVendingMachineController = new VendingMachineController();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            decimal testProductPrice = .23m;
+            ChipButtonStrategy chipButtonStrategy = new ChipButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "THANK YOU";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            string testProductDispensed = "Chips";
+
+            Assert.AreEqual(testProductDispensed, productDispenser.GetLastProductDispensed());
+
+            decimal testChangeReturned = .02m;
+
+            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
+
+        }
     }
 }
