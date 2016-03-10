@@ -57,7 +57,7 @@ namespace VendingMachineTestNS {
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
 
-            string testChangeReturned = "$1.00";
+            decimal testChangeReturned = 1;
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
 

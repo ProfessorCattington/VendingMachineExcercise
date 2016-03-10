@@ -89,7 +89,7 @@ namespace VendingMachineTestNS{
 
             Assert.AreEqual(testProductDispensed, productDispenser.GetLastProductDispensed());
 
-            string testChangeReturned = "$0.15";
+            decimal testChangeReturned = .15m;
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
 

@@ -96,9 +96,9 @@
 
         }
 
-        public string GetChangeOnLastPurchase(){
+        public decimal GetChangeOnLastPurchase(){
 
-            return m_changeOnLastPurchase.ToString("C2");
+            return m_changeOnLastPurchase;
         }
 
         public VendingMachineController GetVendingMachineController(){

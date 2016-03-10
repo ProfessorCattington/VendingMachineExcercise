@@ -17,7 +17,7 @@ namespace VendingMachineTestNS {
 
             decimal testBankValue = 1.0m;
             decimal testDepositValue = 0;
-            string testLastChangeReturnedValue = "$0.00";
+            decimal testLastChangeReturnedValue = 0;
 
             Assert.AreEqual(testBankValue, coinAccepter.GetBankAmount());
             Assert.AreEqual(testDepositValue, coinAccepter.GetCurrentDeposit());
@@ -69,7 +69,7 @@ namespace VendingMachineTestNS {
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
 
-            string testChangeReturned = "$0.50";
+            decimal testChangeReturned = .50m;
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
 
@@ -80,7 +80,7 @@ namespace VendingMachineTestNS {
 
             controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
 
-            testChangeReturned = "$0.35";
+            testChangeReturned = .35m;
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
         }
@@ -101,7 +101,7 @@ namespace VendingMachineTestNS {
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
 
-            string testChangeReturned = "$0.75";
+            decimal testChangeReturned = .75m;
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
