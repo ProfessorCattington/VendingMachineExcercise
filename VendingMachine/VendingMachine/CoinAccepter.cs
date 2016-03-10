@@ -23,19 +23,24 @@
 
         public void AcceptCoin(CoinAccepter.Coin coin){
 
+            DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+
             switch (coin){
 
                 case Coin.Nickle:
 
                     m_currentDeposit += .05f;
+                    digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 case Coin.Dime:
                     m_currentDeposit += .1f;
+                    digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 case Coin.Quarter:
                     m_currentDeposit += .25f;
+                    digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 default:

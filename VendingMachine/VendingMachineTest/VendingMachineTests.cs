@@ -60,7 +60,7 @@ namespace VendingMachineTest
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
         [TestMethod]
@@ -105,7 +105,7 @@ namespace VendingMachineTest
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
         [TestMethod]
@@ -385,7 +385,7 @@ namespace VendingMachineTest
 
             testDisplayOutput = "$0.50";
 
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayCurrentDeposit());
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
     }
 }

@@ -46,7 +46,7 @@ namespace VendingMachineNS {
 
                     else if (currentDeposit < m_candyPrice){
 
-                        digitalDisplay.SetMessage("PRICE " + m_candyPrice.ToString("C2"));
+                        digitalDisplay.UserHasntDepositedEnough(m_candyPrice.ToString("C2"));
                     }
 
                     else{
@@ -68,7 +68,7 @@ namespace VendingMachineNS {
 
                     else if (currentDeposit < m_chipsPrice){
 
-                        digitalDisplay.SetMessage("PRICE " + m_chipsPrice.ToString("C2"));
+                        digitalDisplay.UserHasntDepositedEnough(m_chipsPrice.ToString("C2"));
                     }
 
                     else{
@@ -90,7 +90,7 @@ namespace VendingMachineNS {
 
                     else if (currentDeposit < m_colaPrice){
 
-                        digitalDisplay.SetMessage("PRICE " + m_colaPrice.ToString("C2"));
+                        digitalDisplay.UserHasntDepositedEnough(m_colaPrice.ToString("C2"));
                     }
 
                     else if (productStock > 0) { 
