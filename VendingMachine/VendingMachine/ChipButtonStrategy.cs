@@ -6,7 +6,7 @@ namespace VendingMachineNS{
 
         private VendingMachineController m_vendingMachineController;
 
-        public ChipButtonStrategy(VendingMachineController vendingMachineController, decimal productPrice){
+        public ChipButtonStrategy(VendingMachineController vendingMachineController, decimal chipsPrice){
 
             m_vendingMachineController = vendingMachineController;
 
@@ -23,6 +23,14 @@ namespace VendingMachineNS{
             if (productStock == 0){
 
                 digitalDisplay.UserSelectedASoldOutProduct();
+            }
+            else if (coinAccepter.WeHaveEnoughForChange(chipsPrice)){
+
+                digitalDisplay.UserSelectedExactChangeOnlyProduct();
+            }
+            else if (currentDeposit < chipsPrice){
+
+                digitalDisplay.UserHasntDepositedEnough(chipsPrice.ToString("C2"));
             }
         }
 
