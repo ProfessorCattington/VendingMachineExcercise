@@ -20,6 +20,21 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
+        public void TestIfVendingMachineComponentsHaveAReferenceToTheSameVendingMachineController(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+
+            Assert.AreEqual(testVendingMachineController, digitalDisplay.GetVendingMachineController());
+            Assert.AreEqual(testVendingMachineController, coinAccepter.GetVendingMachineController());
+            Assert.AreEqual(testVendingMachineController, controlPanel.GetVendingMachineController());
+
+        }
+
+        [TestMethod]
         public void TestProductDispenserHasNotDispensedOnInitialization(){
 
             testVendingMachineController = new VendingMachineController();
@@ -295,6 +310,32 @@ namespace VendingMachineTest
             testChangeReturned = "$0.35";
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
+        }
+
+        [TestMethod]
+        public void TestVendingMachineReturnsChangeIfNoPurchaseIsMade(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
+
+            string testChangeReturned = "$0.75";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testMessage = "INSERT COINS";
+
+            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
+            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
         }
     }
 }

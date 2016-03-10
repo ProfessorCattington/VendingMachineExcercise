@@ -3,7 +3,7 @@
    public class DigitalDisplay {
 
         private VendingMachineController m_vendingMachineController;
-        private string m_displayMessage;
+        private string m_displayMessage = "INSERT COINS";
         private bool m_userMadeAPurchase = false;
         private System.DateTime m_lastPurchaseTime;
 
@@ -59,6 +59,11 @@
             }
 
             return m_displayMessage;
+        }
+
+        public VendingMachineController GetVendingMachineController(){
+
+            return m_vendingMachineController;
         }
     }
 }

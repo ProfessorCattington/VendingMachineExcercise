@@ -11,7 +11,8 @@ namespace VendingMachineNS {
 
             candy,
             chip,
-            cola
+            cola,
+            coinReturn
         }
 
         private VendingMachineController m_vendingMachineController;
@@ -77,10 +78,21 @@ namespace VendingMachineNS {
                     }
                     break;
 
+                case buttons.coinReturn:
+
+                    float noMoneySpent = 0;
+
+                    coinAccepter.CheckIfWeOweTheUserChange(noMoneySpent);
+
+                    break;
                 default:
                     break;
 
             }
+        }
+        public VendingMachineController GetVendingMachineController(){
+
+            return m_vendingMachineController;
         }
     }
 }

@@ -2,6 +2,8 @@
 {
     public class CoinAccepter{
 
+        private VendingMachineController m_vendingMachineController;
+
         private float m_currentDeposit = 0;
         private float m_changeOnLastPurchase = 0;
 
@@ -14,9 +16,9 @@
             CanadianQuarter
         }
 
-        public CoinAccepter(){
+        public CoinAccepter(VendingMachineController vendingMachineController){
 
-
+            m_vendingMachineController = vendingMachineController;
         }
 
         public void AcceptCoin(CoinAccepter.Coin coin){
@@ -53,13 +55,20 @@
 
                 m_changeOnLastPurchase = m_currentDeposit - productCost;
                 m_currentDeposit = 0;
-            }
 
+                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+                digitalDisplay.SetMessage("INSERT COINS");
+            }
         }
 
         public string GetChangeOnLastPurchase(){
 
             return m_changeOnLastPurchase.ToString("C2");
+        }
+
+        public VendingMachineController GetVendingMachineController(){
+
+            return m_vendingMachineController;
         }
     }
 }
