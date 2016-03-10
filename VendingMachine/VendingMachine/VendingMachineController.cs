@@ -7,6 +7,7 @@ namespace VendingMachineNS {
         private ControlPanel m_controlPanel;
         private DigitalDisplay m_digitalDisplay;
         private ProductDispenser m_productDispenser;
+        private SnackBox m_snackBox;
 
         public VendingMachineController(){
 
@@ -14,6 +15,7 @@ namespace VendingMachineNS {
             m_digitalDisplay = new DigitalDisplay(this);
             m_controlPanel = new ControlPanel(this);
             m_productDispenser = new ProductDispenser(this);
+            m_snackBox = new SnackBox(this);
 
         }
 
@@ -35,6 +37,11 @@ namespace VendingMachineNS {
         public ProductDispenser GetProductDispenser() {
 
             return m_productDispenser;
+        }
+
+        public SnackBox GetSnackBox(){
+
+            return m_snackBox;
         }
     }
 }

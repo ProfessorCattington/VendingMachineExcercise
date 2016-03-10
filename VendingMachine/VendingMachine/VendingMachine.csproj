@@ -49,6 +49,7 @@
     <Compile Include="ProductDispenser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SnackBox.cs" />
     <Compile Include="VendingMachineController.cs" />
   </ItemGroup>
   <ItemGroup>

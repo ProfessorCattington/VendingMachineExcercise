@@ -5,7 +5,8 @@
         private VendingMachineController m_vendingMachineController;
         private string m_displayMessage = "INSERT COINS";
         private bool m_userMadeAPurchase = false;
-        private System.DateTime m_lastPurchaseTime;
+        private bool m_productWasSoldOut = false; // move to a state machine if we need to look at another bool
+        private System.DateTime m_lastDisplayMessageTime;
 
         public DigitalDisplay(VendingMachineController vendingMachineController){
 
@@ -18,7 +19,7 @@
 
             string displayDepositAmount = coinAccepter.GetCurrentDeposit().ToString("C2");
 
-            if(displayDepositAmount == "$0.00"){
+            if (displayDepositAmount == "$0.00"){
 
                 displayDepositAmount = "INSERT COINS";
             }
@@ -35,15 +36,20 @@
 
             m_displayMessage = "THANK YOU";
             m_userMadeAPurchase = true;
-            m_lastPurchaseTime = System.DateTime.Now;
+            m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
-        public string GetMessage(){
+        public void UserSelectedASoldOutProduct(){
+
+            m_displayMessage = "SOLD OUT";
+        }
+
+        public string DisplayMessage(){
 
             if (m_userMadeAPurchase){
 
                 System.DateTime currentTime = System.DateTime.Now;
-                long elapsedTime = currentTime.Ticks - m_lastPurchaseTime.Ticks;
+                long elapsedTime = currentTime.Ticks - m_lastDisplayMessageTime.Ticks;
 
                 System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
 

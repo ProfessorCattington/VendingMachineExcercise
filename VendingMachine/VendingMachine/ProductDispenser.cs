@@ -20,5 +20,10 @@ namespace VendingMachineNS{
 
             m_lastProductDispensed = product;
         }
+
+        public VendingMachineController GetVendingMachineController(){
+
+            return m_vendingMachineController;
+        }
     }
 }

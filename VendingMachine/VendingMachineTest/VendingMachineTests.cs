@@ -27,11 +27,14 @@ namespace VendingMachineTest
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
 
             Assert.AreEqual(testVendingMachineController, digitalDisplay.GetVendingMachineController());
             Assert.AreEqual(testVendingMachineController, coinAccepter.GetVendingMachineController());
             Assert.AreEqual(testVendingMachineController, controlPanel.GetVendingMachineController());
-
+            Assert.AreEqual(testVendingMachineController, productDispenser.GetVendingMachineController());
+            Assert.AreEqual(testVendingMachineController, snackBox.GetVendingMachineController());
         }
 
         [TestMethod]
@@ -116,17 +119,17 @@ namespace VendingMachineTest
             string testDisplayOutput = "$0.65";
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
+            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
 
             testDisplayOutput = "$0.50";
 
             controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
-            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
+            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
 
             testDisplayOutput = "$1.00";
 
             controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
-            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.GetMessage());
+            Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
         [TestMethod]
@@ -148,7 +151,7 @@ namespace VendingMachineTest
 
             string testDisplayOutput = "PRICE $1.00";
 
-            Assert.AreEqual(testDisplayOutput, digitalDisplay.GetMessage());
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
         [TestMethod]
@@ -194,7 +197,7 @@ namespace VendingMachineTest
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
-            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
+            Assert.AreEqual(testMessage, digitalDisplay.DisplayMessage());
         }
 
         [TestMethod]
@@ -256,7 +259,7 @@ namespace VendingMachineTest
 
             string testMessage = "THANK YOU";
 
-            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
+            Assert.AreEqual(testMessage, digitalDisplay.DisplayMessage());
 
             System.DateTime purchaseTime = System.DateTime.Now;
             System.DateTime currentTime;
@@ -276,7 +279,7 @@ namespace VendingMachineTest
             }
 
             testMessage = "INSERT COINS";
-            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
+            Assert.AreEqual(testMessage, digitalDisplay.DisplayMessage());
         }
 
         [TestMethod]
@@ -335,7 +338,28 @@ namespace VendingMachineTest
             string testMessage = "INSERT COINS";
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
-            Assert.AreEqual(testMessage, digitalDisplay.GetMessage());
+            Assert.AreEqual(testMessage, digitalDisplay.DisplayMessage());
         }
+
+        [TestMethod]
+        public void TestVendingMachineDisplayNotifiesUserWhenProductIsSoldOut(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+            snackBox.SetProductStock("Cola", 0);
+
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "SOLD OUT";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+        }
+
     }
 }

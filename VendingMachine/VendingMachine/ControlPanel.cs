@@ -29,6 +29,7 @@ namespace VendingMachineNS {
 
             DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
             ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
+            SnackBox snackBox = m_vendingMachineController.GetSnackBox();
 
             switch (button)
             {
@@ -65,17 +66,25 @@ namespace VendingMachineNS {
 
                 case buttons.cola:
 
-                    if (currentDeposit < m_colaPrice){
+                    int productStock = snackBox.GetProductStock("Cola");
+
+                    if(productStock == 0){
+
+                        digitalDisplay.UserSelectedASoldOutProduct();
+                    }
+
+                    else if (currentDeposit < m_colaPrice){
 
                         digitalDisplay.SetMessage("PRICE " + m_colaPrice.ToString("C2"));
                     }
 
-                    else{
+                    else if (productStock > 0) { 
 
                         productDispenser.SetLastProductDispensed("Cola");
                         digitalDisplay.UserMadeAPurchase();
                         coinAccepter.CheckIfWeOweTheUserChange(m_colaPrice);
                     }
+       
                     break;
 
                 case buttons.coinReturn:
