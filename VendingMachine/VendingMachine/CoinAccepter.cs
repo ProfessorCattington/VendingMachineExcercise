@@ -72,9 +72,23 @@
                 m_changeOnLastPurchase = m_currentDeposit - productCost;
                 m_currentDeposit = 0;
 
-                DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                digitalDisplay.SetMessage("INSERT COINS");
+                SpitOutChange();
+
+                //DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+                //digitalDisplay.SetMessage("INSERT COINS");
             }
+        }
+
+        public void UserPressedCoinReturn(){
+
+            m_changeOnLastPurchase = m_currentDeposit;
+            m_currentDeposit = 0;
+
+            SpitOutChange();
+
+            //DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+            //digitalDisplay.SetMessage("INSERT COINS");
+
         }
 
         public string GetChangeOnLastPurchase(){
@@ -86,5 +100,7 @@
 
             return m_vendingMachineController;
         }
+
+        public void SpitOutChange() { }
     }
 }

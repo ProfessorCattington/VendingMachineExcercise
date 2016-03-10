@@ -243,8 +243,6 @@ namespace VendingMachineTest
 
             testVendingMachineController = new VendingMachineController();
 
-            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
-
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -287,8 +285,6 @@ namespace VendingMachineTest
 
             testVendingMachineController = new VendingMachineController();
 
-            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
-
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -316,6 +312,33 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
+        public void TestVendingMachineReturnsChangeToUserButDoesntDispenseProduct() { 
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
+
+            string testChangeReturned = "$1.00";
+
+            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
+
+            string testProductDispensed = "None";
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            Assert.AreEqual(testProductDispensed, productDispenser.GetLastProductDispensed());
+        }
+
+
+        [TestMethod]
         public void TestVendingMachineReturnsChangeIfNoPurchaseIsMade() {
 
             testVendingMachineController = new VendingMachineController();
@@ -332,12 +355,13 @@ namespace VendingMachineTest
             controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
 
             string testChangeReturned = "$0.75";
-
+    
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+      
+            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
 
             string testMessage = "INSERT COINS";
 
-            Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
             Assert.AreEqual(testMessage, digitalDisplay.DisplayMessage());
         }
 
@@ -459,8 +483,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void TestVendingMachineNotifiesExactChangeOnlyWithoutDeposit()
-        {
+        public void TestVendingMachineNotifiesExactChangeOnlyWithoutDeposit(){
 
             testVendingMachineController = new VendingMachineController();
 

@@ -70,6 +70,12 @@
             m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
+        public void UserPressedCoinReturn(){
+
+            m_displayMessage = "INSERT COIN";
+            m_currentState = displayState.insertCoins;
+        }
+
         public string DisplayMessage(){
 
             System.DateTime buttonPressTime = System.DateTime.Now;

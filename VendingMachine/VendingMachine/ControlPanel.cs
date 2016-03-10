@@ -113,11 +113,11 @@ namespace VendingMachineNS {
 
                 case buttons.coinReturn:
 
-                    float noMoneySpent = 0;
-
-                    coinAccepter.CheckIfWeOweTheUserChange(noMoneySpent);
-
+                    coinAccepter.UserPressedCoinReturn();
+                    digitalDisplay.UserPressedCoinReturn();
+                    productDispenser.SetLastProductDispensed("None");
                     break;
+
                 default:
                     break;
 
