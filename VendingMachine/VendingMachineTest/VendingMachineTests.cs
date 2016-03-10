@@ -446,7 +446,6 @@ namespace VendingMachineTest
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             
-
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
 
@@ -455,6 +454,29 @@ namespace VendingMachineTest
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+
+        }
+
+        [TestMethod]
+        public void TestVendingMachineNotifiesExactChangeOnlyWithoutDeposit()
+        {
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(0);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+
+            string testDisplayOutput = "EXACT CHANGE ONLY";
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+
         }
     }
 }

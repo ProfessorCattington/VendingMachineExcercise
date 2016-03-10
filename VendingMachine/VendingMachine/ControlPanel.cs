@@ -43,7 +43,10 @@ namespace VendingMachineNS {
 
                         digitalDisplay.UserSelectedASoldOutProduct();
                     }
+                    else if (coinAccepter.WeHaveEnoughForChange(m_candyPrice)){
 
+                        digitalDisplay.UserSelectedExactChangeOnlyProduct();
+                    }
                     else if (currentDeposit < m_candyPrice){
 
                         digitalDisplay.UserHasntDepositedEnough(m_candyPrice.ToString("C2"));
@@ -90,7 +93,10 @@ namespace VendingMachineNS {
 
                         digitalDisplay.UserSelectedASoldOutProduct();
                     }
-                    
+                    else if (coinAccepter.WeHaveEnoughForChange(m_colaPrice)){
+
+                        digitalDisplay.UserSelectedExactChangeOnlyProduct();
+                    }
                     else if (currentDeposit < m_colaPrice){
 
                         digitalDisplay.UserHasntDepositedEnough(m_colaPrice.ToString("C2"));
