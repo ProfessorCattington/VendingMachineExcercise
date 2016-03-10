@@ -102,26 +102,7 @@
 
                 case displayState.productSoldOut:
 
-                    if (timeSpan.Seconds < 3){
-
-                      
-                    }
-                    else{
-
-                        CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
-                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
-
-                        if (depositAmount > 0){
-
-                            m_currentState = displayState.displayDeposit;
-                            m_displayMessage = depositAmount.ToString("C2");
-                        }
-                        else{
-
-                            m_currentState = displayState.insertCoins;
-                            m_displayMessage = "INSERT COINS";
-                        }
-                    }
+                    new DisplaySoldOutStrategy(this);
 
                     break;
 
