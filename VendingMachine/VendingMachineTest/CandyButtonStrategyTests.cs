@@ -31,5 +31,22 @@ namespace VendingMachineTestNS{
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
+        [TestMethod]
+        public void TestStrategyHasProperOutcomeIfProductIsOutOfStock(){
+
+            testVendingMachineController = new VendingMachineController();
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+            snackBox.SetProductStock("Candy", 0);
+
+            decimal testProductPrice = 1;
+            CandyButtonStrategy candyButtonStrategy = new CandyButtonStrategy(testVendingMachineController, testProductPrice);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testDisplayOutput = "SOLD OUT";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+
+        }
     }
 }
