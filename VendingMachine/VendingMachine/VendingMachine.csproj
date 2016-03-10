@@ -51,6 +51,7 @@
     <Compile Include="ControlPanel.cs" />
     <Compile Include="DigitalDisplay.cs" />
     <Compile Include="DisplayPriceStrategy.cs" />
+    <Compile Include="DisplaySoldOutStrategy.cs" />
     <Compile Include="DisplayThankYouStrategy.cs" />
     <Compile Include="ProductDispenser.cs" />
     <Compile Include="Program.cs" />

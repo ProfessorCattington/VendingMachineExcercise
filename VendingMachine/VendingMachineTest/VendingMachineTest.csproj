@@ -60,6 +60,7 @@
     <Compile Include="ControlPanelTests.cs" />
     <Compile Include="DigitalDisplayTests.cs" />
     <Compile Include="DisplayPriceStrategyTests.cs" />
+    <Compile Include="DisplaySoldOutStrategyTests.cs" />
     <Compile Include="DisplayThankYouStrategyTests.cs" />
     <Compile Include="ProductDispenserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

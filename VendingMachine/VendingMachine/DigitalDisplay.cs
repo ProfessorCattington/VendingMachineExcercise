@@ -96,14 +96,7 @@
 
                 case displayState.thankYou:
 
-                    if (timeSpan.Seconds < 3){
-
-                    }
-                    else{
-
-                        m_currentState = displayState.insertCoins;
-                        m_displayMessage = "INSERT COINS";
-                    }
+                    new DisplayThankYouStrategy(this);
 
                     break;
 
