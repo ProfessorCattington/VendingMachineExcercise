@@ -9,6 +9,20 @@ namespace VendingMachineTestNS {
         VendingMachineController testVendingMachineController;
 
         [TestMethod]
+        public void CoinAccepterIsConstructedProperly(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+
+            float testBankValue = 1.0f;
+            float testDepositValue = 0;
+            float testLastChangeOnDepostValue = 0;
+
+            Assert.AreEqual(testBankValue, coinAccepter.GetBankAmount());
+        }
+
+        [TestMethod]
         public void TestVendingMachineAcceptsCoins(){
 
             testVendingMachineController = new VendingMachineController();

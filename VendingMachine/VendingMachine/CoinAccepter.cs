@@ -60,6 +60,11 @@
             m_bank = bank;
         }
 
+        public float GetBankAmount(){
+
+            return m_bank;
+        }
+
         public bool WeHaveEnoughForChange(float productCost){
 
             return (m_bank - productCost < 0) ? true : false;
