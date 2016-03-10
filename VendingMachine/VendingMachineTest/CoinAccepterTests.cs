@@ -17,9 +17,11 @@ namespace VendingMachineTestNS {
 
             float testBankValue = 1.0f;
             float testDepositValue = 0;
-            float testLastChangeOnDepostValue = 0;
+            string testLastChangeReturnedValue = "$0.00";
 
             Assert.AreEqual(testBankValue, coinAccepter.GetBankAmount());
+            Assert.AreEqual(testDepositValue, coinAccepter.GetCurrentDeposit());
+            Assert.AreEqual(testLastChangeReturnedValue, coinAccepter.GetChangeOnLastPurchase());
         }
 
         [TestMethod]
