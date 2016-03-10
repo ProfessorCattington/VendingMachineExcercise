@@ -42,6 +42,8 @@
         public void UserSelectedASoldOutProduct(){
 
             m_displayMessage = "SOLD OUT";
+            m_productWasSoldOut = true;
+            m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
         public string DisplayMessage(){
@@ -60,6 +62,24 @@
                 else{
 
                     m_userMadeAPurchase = false;
+                    m_displayMessage = "INSERT COINS";
+                }
+            }
+
+            if (m_productWasSoldOut){
+
+                System.DateTime currentTime = System.DateTime.Now;
+                long elapsedTime = currentTime.Ticks - m_lastDisplayMessageTime.Ticks;
+
+                System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
+
+                if (timeSpan.Seconds < 3){
+
+                    return "SOLD OUT";
+                }
+                else{
+
+                    m_productWasSoldOut = false;
                     m_displayMessage = "INSERT COINS";
                 }
             }

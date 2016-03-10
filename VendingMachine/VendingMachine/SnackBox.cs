@@ -13,6 +13,8 @@ namespace VendingMachineNS {
             m_vendingMachineController = vendingMachineController;
             m_vendingMachineProducts = new Dictionary<string, int>();
             m_vendingMachineProducts.Add("Cola", 1);
+            m_vendingMachineProducts.Add("Chips", 1);
+            m_vendingMachineProducts.Add("Candy", 1);
         }
 
         public void SetProductStock(string product, int stock){

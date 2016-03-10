@@ -30,13 +30,21 @@ namespace VendingMachineNS {
             DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
             ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
             SnackBox snackBox = m_vendingMachineController.GetSnackBox();
+            int productStock;
 
             switch (button)
             {
 
                 case buttons.candy:
 
-                    if (currentDeposit < m_candyPrice){
+                    productStock = snackBox.GetProductStock("Candy");
+
+                    if (productStock == 0){
+
+                        digitalDisplay.UserSelectedASoldOutProduct();
+                    }
+
+                    else if (currentDeposit < m_candyPrice){
 
                         digitalDisplay.SetMessage("PRICE " + m_candyPrice.ToString("C2"));
                     }
@@ -51,7 +59,14 @@ namespace VendingMachineNS {
 
                 case buttons.chip:
 
-                    if (currentDeposit < m_chipsPrice){
+                    productStock = snackBox.GetProductStock("Chips");
+
+                    if (productStock == 0){
+
+                        digitalDisplay.UserSelectedASoldOutProduct();
+                    }
+
+                    else if (currentDeposit < m_chipsPrice){
 
                         digitalDisplay.SetMessage("PRICE " + m_chipsPrice.ToString("C2"));
                     }
@@ -66,7 +81,7 @@ namespace VendingMachineNS {
 
                 case buttons.cola:
 
-                    int productStock = snackBox.GetProductStock("Cola");
+                    productStock = snackBox.GetProductStock("Cola");
 
                     if(productStock == 0){
 

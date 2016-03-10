@@ -272,7 +272,7 @@ namespace VendingMachineTest
 
                 System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
 
-                if (timeSpan.Seconds > 5){
+                if (timeSpan.Seconds > 4){
 
                     waiting = false;
                 }
@@ -349,7 +349,6 @@ namespace VendingMachineTest
             SnackBox snackBox = testVendingMachineController.GetSnackBox();
             snackBox.SetProductStock("Cola", 0);
 
-
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
             controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
 
@@ -359,7 +358,26 @@ namespace VendingMachineTest
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
 
-        }
+            System.DateTime purchaseTime = System.DateTime.Now;
+            System.DateTime currentTime;
 
+            bool waiting = true;
+            while (waiting){
+            
+                currentTime = System.DateTime.Now;
+                long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
+
+                System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
+
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            testDisplayOutput = "INSERT COINS";
+
+            Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
+        }
     }
 }
