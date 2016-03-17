@@ -7,5 +7,5 @@ repository for the vending machine code kata
 
 ### Task List
 
-* [ ] neat
-* [ ] made
+- [ ] neat
+- [ ] made
