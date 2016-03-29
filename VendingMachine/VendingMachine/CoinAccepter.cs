@@ -78,9 +78,6 @@
                 m_currentDeposit = 0;
 
                 SpitOutChange();
-
-                //DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-                //digitalDisplay.SetMessage("INSERT COINS");
             }
         }
 
@@ -90,10 +87,6 @@
             m_currentDeposit = 0;
 
             SpitOutChange();
-
-            //DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-            //digitalDisplay.SetMessage("INSERT COINS");
-
         }
 
         public decimal GetChangeOnLastPurchase(){
@@ -106,6 +99,9 @@
             return m_vendingMachineController;
         }
 
-        public void SpitOutChange() { }
+        public void SpitOutChange() {
+
+            //dummy routine. 
+        }
     }
 }

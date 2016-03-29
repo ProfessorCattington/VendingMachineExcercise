@@ -9,7 +9,20 @@ namespace VendingMachineTestNS{
         VendingMachineController testVendingMachineController;
 
         [TestMethod]
-        public void TestDisplayStrategyDoesntImmediatelyRemoveExactChangeNotification(){
+        public void TestDisplayChangerHasHandleOnCorrectDisplayObject(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
+            Assert.AreSame(digitalDisplay, displayChanger.GetDigitalDisplay());
+
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerDoesntImmediatelyRemoveExactChangeNotification(){
 
             testVendingMachineController = new VendingMachineController();
 
