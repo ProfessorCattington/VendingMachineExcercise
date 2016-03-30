@@ -41,6 +41,23 @@ namespace VendingMachineNS{
 
                     break;
 
+                case DigitalDisplay.displayState.insertCoins:
+
+                    break;
+
+                case DigitalDisplay.displayState.displayPrice:
+
+                    break;
+
+                case DigitalDisplay.displayState.thankYou:
+
+
+                    break;
+
+                case DigitalDisplay.displayState.productSoldOut:
+
+                    break;
+
                 default:
 
                     break;

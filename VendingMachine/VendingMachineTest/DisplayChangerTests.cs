@@ -91,5 +91,19 @@ namespace VendingMachineTestNS{
 
             Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
         }
+
+        [TestMethod]
+        public void TestDisplayChangerDoesntImmediatelyChangeDisplayOnceMoneyBeenDeposited(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            decimal testPrice = 0.75m;
+            digitalDisplay.UserInsertCoins(testPrice);
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
+            Assert.AreEqual("PRICE " + testPrice.ToString("C2"), digitalDisplay.GetCurrentMessage());
+        }
     }
 }
