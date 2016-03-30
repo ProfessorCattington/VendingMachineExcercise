@@ -86,7 +86,8 @@ namespace VendingMachineNS{
                         }
                         else{
 
-                            
+                            currentDisplayState = DigitalDisplay.displayState.insertCoins;
+                            digitalDisplay.SetMessage("INSERT COINS");
                         }
                     }
 
