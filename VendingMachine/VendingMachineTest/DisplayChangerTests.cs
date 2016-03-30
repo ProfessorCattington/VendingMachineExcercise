@@ -264,5 +264,33 @@ namespace VendingMachineTestNS{
 
             Assert.AreEqual(testThanks, digitalDisplay.GetCurrentMessage());
         }
+
+        [TestMethod]
+        public void TestDisplayChangerChangesThankYouMessageChangedAfterAShortWait(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            digitalDisplay.UserMadeAPurchase();
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
+
+            Assert.AreEqual("INSERT COINS", digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
     }
 }
