@@ -69,6 +69,11 @@ namespace VendingMachineNS{
 
                 case DigitalDisplay.displayState.thankYou:
 
+                    if (timeSpan.Seconds > 3){
+
+                        currentDisplayState = DigitalDisplay.displayState.insertCoins;
+                        digitalDisplay.SetMessage("INSERT COINS");
+                    }
 
                     break;
 
