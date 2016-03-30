@@ -59,7 +59,7 @@
         public void UserSelectedExactChangeOnlyProduct() {
 
             m_displayMessage = "EXACT CHANGE ONLY";
-            m_currentState = displayState.exactChange;
+            m_currentState = displayState.displayPrice;
             m_lastDisplayMessageTime = System.DateTime.Now;
         }
 

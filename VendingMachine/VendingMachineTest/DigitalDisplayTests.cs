@@ -132,16 +132,14 @@ namespace VendingMachineTestNS {
             System.DateTime currentTime;
 
             bool waiting = true;
-            while (waiting)
-            {
+            while (waiting){
 
                 currentTime = System.DateTime.Now;
                 long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
 
                 System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
 
-                if (timeSpan.Seconds > 4)
-                {
+                if (timeSpan.Seconds > 4){
 
                     waiting = false;
                 }
@@ -170,8 +168,6 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
-
-
         }
 
         [TestMethod]
@@ -190,8 +186,6 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
-
-
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using VendingMachineNS;
-
-namespace VendingMachineNS{
+﻿namespace VendingMachineNS{
 
     public class DisplayChanger{
 
@@ -19,31 +17,6 @@ namespace VendingMachineNS{
             System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
 
             switch (currentDisplayState){
-
-                case DigitalDisplay.displayState.exactChange:
-
-                    if (timeSpan.Seconds > 3){
-
-                        CoinAccepter coinAccepter = digitalDisplay.GetVendingMachineController().GetCoinAccepter();
-                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
-
-                        if (depositAmount > 0){
-
-                            currentDisplayState = DigitalDisplay.displayState.displayDeposit;
-                            digitalDisplay.SetMessage(depositAmount.ToString("C2"));
-                        }
-                        else{
-
-                            currentDisplayState = DigitalDisplay.displayState.insertCoins;
-                            digitalDisplay.SetMessage("INSERT COINS");
-                        }
-                    }
-
-                    break;
-
-                case DigitalDisplay.displayState.insertCoins:
-
-                    break;
 
                 case DigitalDisplay.displayState.displayPrice:
 
