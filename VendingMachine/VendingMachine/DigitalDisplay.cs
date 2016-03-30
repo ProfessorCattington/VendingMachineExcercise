@@ -128,6 +128,11 @@
             return m_currentState;
         }
 
+        public void SetCurrentState(displayState state){
+
+            m_currentState = state;
+        }
+
         public string GetCurrentMessage(){
 
             return m_displayMessage;

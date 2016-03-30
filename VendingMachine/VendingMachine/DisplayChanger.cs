@@ -55,7 +55,8 @@ namespace VendingMachineNS{
 
                         if (depositAmount > 0){
 
-                           
+                            currentDisplayState = DigitalDisplay.displayState.displayDeposit;
+                            digitalDisplay.SetMessage(depositAmount.ToString("C2"));
                         }
                         else{
 
@@ -79,6 +80,8 @@ namespace VendingMachineNS{
 
                     break;
             }
+
+            digitalDisplay.SetCurrentState(currentDisplayState);
         }
 
         public DigitalDisplay GetDigitalDisplay(){

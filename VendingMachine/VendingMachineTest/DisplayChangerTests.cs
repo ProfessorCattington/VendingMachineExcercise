@@ -137,6 +137,7 @@ namespace VendingMachineTestNS{
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
             Assert.AreEqual(testDeposit.ToString("C2"), digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(DigitalDisplay.displayState.displayDeposit, digitalDisplay.GetCurrentState());
         }
 
         [TestMethod]
