@@ -249,5 +249,20 @@ namespace VendingMachineTestNS{
             Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
+
+        [TestMethod]
+        public void TestDisplayChangerDoesntImmediatelyReplaceThankYouMessageOnPurchase(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            digitalDisplay.UserMadeAPurchase();
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
+            string testThanks = "THANK YOU";
+
+            Assert.AreEqual(testThanks, digitalDisplay.GetCurrentMessage());
+        }
     }
 }
