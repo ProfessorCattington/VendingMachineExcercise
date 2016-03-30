@@ -74,6 +74,22 @@ namespace VendingMachineNS{
 
                 case DigitalDisplay.displayState.productSoldOut:
 
+                    if (timeSpan.Seconds > 3){
+
+                        CoinAccepter coinAccepter = digitalDisplay.GetVendingMachineController().GetCoinAccepter();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
+
+                        if (depositAmount > 0){
+
+                            currentDisplayState = DigitalDisplay.displayState.displayDeposit;
+                            digitalDisplay.SetMessage(depositAmount.ToString("C2"));
+                        }
+                        else{
+
+                            
+                        }
+                    }
+
                     break;
 
                 default:
