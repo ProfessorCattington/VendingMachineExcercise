@@ -98,12 +98,39 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            decimal testPrice = 0.75m;
-            digitalDisplay.UserInsertCoins(testPrice);
+            decimal testDeposit = 0.75m;
+            digitalDisplay.UserInsertCoins(testDeposit);
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
-            Assert.AreEqual("PRICE " + testPrice.ToString("C2"), digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testDeposit.ToString("C2"), digitalDisplay.GetCurrentMessage());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerChangesDisplayAfterAWaitIfNotEnoughMoneyIsDeposited(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            string testPrice = "$0.99";
+            digitalDisplay.UserHasntDepositedEnough(testPrice);
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
+            Assert.AreEqual("INSERT COINS", digitalDisplay.GetCurrentMessage());
         }
     }
 }
