@@ -60,10 +60,13 @@ namespace VendingMachineTestNS{
                 }
             }
             string testExactChange = "$0.25";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayDeposit;
 
-            digitalDisplay.DisplayMessage();
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
 
             Assert.AreEqual(testExactChange, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
 
         [TestMethod]
@@ -86,10 +89,12 @@ namespace VendingMachineTestNS{
                 }
             }
             string testMessage = "INSERT COINS";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
 
-            digitalDisplay.DisplayMessage();
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
             Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
 
         [TestMethod]
