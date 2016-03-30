@@ -136,8 +136,10 @@ namespace VendingMachineTestNS{
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayDeposit;
+
             Assert.AreEqual(testDeposit.ToString("C2"), digitalDisplay.GetCurrentMessage());
-            Assert.AreEqual(DigitalDisplay.displayState.displayDeposit, digitalDisplay.GetCurrentState());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
 
         [TestMethod]
@@ -164,7 +166,25 @@ namespace VendingMachineTestNS{
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
+
             Assert.AreEqual("INSERT COINS", digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerDoesntImmediatelyChangeDisplayMessageWhenSoldOutProductIsSelected(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            digitalDisplay.UserSelectedASoldOutProduct();
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
+            string testSoldOut = "SOLD OUT";
+
+            Assert.AreEqual(testSoldOut, digitalDisplay.GetCurrentMessage());
         }
     }
 }
