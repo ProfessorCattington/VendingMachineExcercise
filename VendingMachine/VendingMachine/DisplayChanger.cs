@@ -47,6 +47,23 @@ namespace VendingMachineNS{
 
                 case DigitalDisplay.displayState.displayPrice:
 
+                    if (timeSpan.Seconds > 3){
+
+                        CoinAccepter coinAccepter = digitalDisplay.GetVendingMachineController().GetCoinAccepter();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
+
+
+                        if (depositAmount > 0){
+
+                           
+                        }
+                        else{
+
+                            currentDisplayState = DigitalDisplay.displayState.insertCoins;
+                            digitalDisplay.SetMessage("INSERT COINS");
+                        }
+                    }
+
                     break;
 
                 case DigitalDisplay.displayState.thankYou:
