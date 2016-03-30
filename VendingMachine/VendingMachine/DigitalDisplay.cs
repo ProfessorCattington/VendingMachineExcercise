@@ -71,42 +71,44 @@
 
         public string DisplayMessage(){
 
-            switch (m_currentState){
+            new DisplayChanger(this);
 
-                case displayState.displayDeposit:
+            //switch (m_currentState){
 
-                    break;
+            //    case displayState.displayDeposit:
 
-                case displayState.insertCoins:
+            //        break;
 
-                   m_displayMessage = "INSERT COINS";
+            //    case displayState.insertCoins:
 
-                   break;
+            //       m_displayMessage = "INSERT COINS";
 
-                case displayState.displayPrice:
+            //       break;
 
-                    new DisplayPriceStrategy(this);
+            //    case displayState.displayPrice:
 
-                    break;
+            //        new DisplayPriceStrategy(this);
 
-                case displayState.thankYou:
+            //        break;
 
-                    new DisplayThankYouStrategy(this);
+            //    case displayState.thankYou:
 
-                    break;
+            //        new DisplayThankYouStrategy(this);
 
-                case displayState.productSoldOut:
+            //        break;
 
-                    new DisplaySoldOutStrategy(this);
+            //    case displayState.productSoldOut:
 
-                    break;
+            //        new DisplaySoldOutStrategy(this);
 
-                case displayState.exactChange:
+            //        break;
 
-                    new DisplayExactChangeStrategy(this);
+            //    case displayState.exactChange:
 
-                    break;
-            }
+            //        new DisplayExactChangeStrategy(this);
+
+            //        break;
+            //}
 
             return m_displayMessage;
         }
