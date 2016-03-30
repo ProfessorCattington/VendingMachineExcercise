@@ -107,7 +107,40 @@ namespace VendingMachineTestNS{
         }
 
         [TestMethod]
-        public void TestDisplayChangerChangesDisplayAfterAWaitIfNotEnoughMoneyIsDeposited(){
+        public void TestDisplayChangerCausesAmountDepositedToBeDisplayedAfterAWaitIfMoneyIsDepositedAndButtonPressed(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
+
+            decimal testDeposit = .10m;
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testPrice = "$0.33";
+            digitalDisplay.UserHasntDepositedEnough(testPrice);
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
+
+            Assert.AreEqual(testDeposit.ToString("C2"), digitalDisplay.GetCurrentMessage());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerChangesDisplayAfterAWaitIfNoMoneyIsDeposited(){
 
             testVendingMachineController = new VendingMachineController();
 
