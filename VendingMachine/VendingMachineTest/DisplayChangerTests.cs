@@ -59,12 +59,37 @@ namespace VendingMachineTestNS{
                     waiting = false;
                 }
             }
-
-            DisplayExactChangeStrategy exactChangeStrategy = new DisplayExactChangeStrategy(digitalDisplay);
-
             string testExactChange = "$0.25";
 
+            digitalDisplay.DisplayMessage();
+
             Assert.AreEqual(testExactChange, digitalDisplay.GetCurrentMessage());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerChangesMessageAfterAWaitWithoutDepositOnExactChangePurchase(){
+
+            testVendingMachineController = new VendingMachineController();
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            digitalDisplay.UserSelectedExactChangeOnlyProduct();
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+            string testMessage = "INSERT COINS";
+
+            digitalDisplay.DisplayMessage();
+
+            Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
         }
     }
 }
