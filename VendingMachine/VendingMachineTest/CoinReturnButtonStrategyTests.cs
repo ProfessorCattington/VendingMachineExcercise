@@ -32,7 +32,7 @@ namespace VendingMachineTestNS {
 
             Assert.AreEqual(testMoneyReturned, coinAccepter.GetChangeOnLastPurchase());
 
-            string testDisplayOutput = "INSERT COINS";
+            string testDisplayOutput = "INSERT COIN";
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 

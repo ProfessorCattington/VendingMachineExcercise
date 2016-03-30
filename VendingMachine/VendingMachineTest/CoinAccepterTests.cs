@@ -107,7 +107,7 @@ namespace VendingMachineTestNS {
 
             Assert.AreEqual(testChangeReturned, coinAccepter.GetChangeOnLastPurchase());
 
-            string testMessage = "INSERT COINS";
+            string testMessage = "INSERT COIN";
 
             Assert.AreEqual(testMessage, digitalDisplay.DisplayMessage());
         }
