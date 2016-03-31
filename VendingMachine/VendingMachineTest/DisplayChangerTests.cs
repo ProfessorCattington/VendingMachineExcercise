@@ -27,7 +27,10 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserSelectedExactChangeOnlyProduct();
+
+            string testMessage = "EXACT CHANGE ONLY";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
@@ -45,7 +48,10 @@ namespace VendingMachineTestNS{
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserSelectedExactChangeOnlyProduct();
+
+            string testMessage = "EXACT CHANGE ONLY";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -60,10 +66,9 @@ namespace VendingMachineTestNS{
                 }
             }
             string testExactChange = "$0.25";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayDeposit;
+            testState = DigitalDisplay.displayState.displayDeposit;
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
-
 
             Assert.AreEqual(testExactChange, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
@@ -74,7 +79,10 @@ namespace VendingMachineTestNS{
 
             testVendingMachineController = new VendingMachineController();
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserSelectedExactChangeOnlyProduct();
+
+            string testMessage = "EXACT CHANGE ONLY";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -88,8 +96,8 @@ namespace VendingMachineTestNS{
                     waiting = false;
                 }
             }
-            string testMessage = "INSERT COINS";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
+            testMessage = "INSERT COINS";
+            testState = DigitalDisplay.displayState.insertCoins;
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
