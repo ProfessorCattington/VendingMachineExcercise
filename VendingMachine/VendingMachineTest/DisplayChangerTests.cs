@@ -265,7 +265,11 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserMadeAPurchase();
+
+            string testMessage = "THANK YOU";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.thankYou;
+
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
@@ -280,7 +284,11 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserMadeAPurchase();
+
+            string testMessage = "THANK YOU";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.thankYou;
+
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -296,7 +304,7 @@ namespace VendingMachineTestNS{
             }
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
+            testState = DigitalDisplay.displayState.insertCoins;
 
             Assert.AreEqual("INSERT COINS", digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
