@@ -32,23 +32,23 @@
                 case Coin.Nickle:
 
                     m_currentDeposit += .05m;
-                    digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 case Coin.Dime:
                     m_currentDeposit += .1m;
-                    digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 case Coin.Quarter:
                     m_currentDeposit += .25m;
-                    digitalDisplay.UserInsertCoins(m_currentDeposit);
                     break;
 
                 default:
 
                     break;
             }
+            string formattedDepositString = m_currentDeposit.ToString("C2");
+            DigitalDisplay.displayState coinInsertedState = DigitalDisplay.displayState.displayDeposit;
+            digitalDisplay.SetMessageAndState(formattedDepositString, coinInsertedState);
         }
 
         public decimal GetCurrentDeposit(){
