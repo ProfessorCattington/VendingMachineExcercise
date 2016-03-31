@@ -35,7 +35,9 @@ namespace VendingMachineNS {
             else if (productStock > 0){
 
                 productDispenser.SetLastProductDispensed("Cola");
-                digitalDisplay.UserMadeAPurchase();
+                string displayMessage = "THANK YOU";
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.thankYou;
+                digitalDisplay.SetMessageAndState(displayMessage, displayState);
                 coinAccepter.CheckIfWeOweTheUserChange(colaPrice);
             }
         }

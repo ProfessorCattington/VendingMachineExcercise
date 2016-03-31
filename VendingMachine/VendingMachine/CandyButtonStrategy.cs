@@ -33,7 +33,9 @@ namespace VendingMachineNS { }
         else{
 
             productDispenser.SetLastProductDispensed("Candy");
-            digitalDisplay.UserMadeAPurchase();
+            string displayMessage = "THANK YOU";
+            DigitalDisplay.displayState displayState = DigitalDisplay.displayState.thankYou;
+            digitalDisplay.SetMessageAndState(displayMessage, displayState);
             coinAccepter.CheckIfWeOweTheUserChange(candyPrice);
         }
     }
