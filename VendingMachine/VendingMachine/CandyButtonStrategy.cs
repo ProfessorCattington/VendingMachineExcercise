@@ -30,7 +30,9 @@ namespace VendingMachineNS { }
         }
         else if (currentDeposit < candyPrice){
 
-            digitalDisplay.UserHasntDepositedEnough(candyPrice.ToString("C2"));
+            string message = "PRICE " + candyPrice.ToString("C2");
+            DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(message, displayState);
         }
         else{
 
