@@ -187,13 +187,14 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserSelectedASoldOutProduct();
+
+            string testMessage = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
-            string testSoldOut = "SOLD OUT";
-
-            Assert.AreEqual(testSoldOut, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
         }
 
         [TestMethod]
@@ -206,7 +207,9 @@ namespace VendingMachineTestNS{
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
 
-            digitalDisplay.UserSelectedASoldOutProduct();
+            string testMessage = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -223,7 +226,7 @@ namespace VendingMachineTestNS{
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
             string testDeposit = "$0.10";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayDeposit;
+            testState = DigitalDisplay.displayState.displayDeposit;
 
             Assert.AreEqual(testDeposit, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
@@ -235,7 +238,9 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserSelectedASoldOutProduct();
+            string testMessage = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -251,9 +256,9 @@ namespace VendingMachineTestNS{
             }
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
+            testState = DigitalDisplay.displayState.insertCoins;
 
-            string testMessage = "INSERT COINS";
+            testMessage = "INSERT COINS";
 
             Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
