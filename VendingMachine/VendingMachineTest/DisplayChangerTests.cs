@@ -104,11 +104,15 @@ namespace VendingMachineTestNS{
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
             decimal testDeposit = 0.75m;
-            digitalDisplay.UserInsertCoins(testDeposit);
+            string testString = testDeposit.ToString("C2");
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+
+            digitalDisplay.SetMessageAndState(testString, testState);
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
             Assert.AreEqual(testDeposit.ToString("C2"), digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
 
         [TestMethod]
