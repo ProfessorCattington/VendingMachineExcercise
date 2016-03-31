@@ -30,30 +30,32 @@ namespace VendingMachineTestNS {
 
             string testString = "SOLD OUT";
             DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            System.DateTime testTime = System.DateTime.Now;
 
             digitalDisplay.SetMessageAndState(testString, testState);
 
             Assert.AreEqual(testString, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+            Assert.AreEqual(testTime, digitalDisplay.GetLastMessageTime());
 
-            System.DateTime purchaseTime = System.DateTime.Now;
             System.DateTime currentTime;
 
             bool waiting = true;
             while (waiting){
 
                 currentTime = System.DateTime.Now;
-                long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
+                long elapsedTime = currentTime.Ticks - testTime.Ticks;
 
                 System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
 
                 if (timeSpan.Seconds > 4){
 
                     waiting = false;
+                    digitalDisplay.DisplayMessage();
                 }
             }
 
-            testString = "INSERT COIN";
+            testString = "INSERT COINS";
             testState = DigitalDisplay.displayState.insertCoins;
 
             Assert.AreEqual(testString, digitalDisplay.GetCurrentMessage());

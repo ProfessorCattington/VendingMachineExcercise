@@ -24,6 +24,13 @@
             m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
+        public void SetMessageAndState(string message, displayState state){
+
+            m_displayMessage = message;
+            m_currentState = state;
+            m_lastDisplayMessageTime = System.DateTime.Now;
+        }
+
         public void SetMessage(string message){
 
             m_displayMessage = message;
