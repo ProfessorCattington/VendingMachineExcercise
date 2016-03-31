@@ -22,6 +22,45 @@ namespace VendingMachineTestNS {
         }
 
         [TestMethod]
+        public void TestMessageAndStateSetter(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testString = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+
+            digitalDisplay.SetMessageAndState(testString, testState);
+
+            Assert.AreEqual(testString, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+
+            System.DateTime purchaseTime = System.DateTime.Now;
+            System.DateTime currentTime;
+
+            bool waiting = true;
+            while (waiting){
+
+                currentTime = System.DateTime.Now;
+                long elapsedTime = currentTime.Ticks - purchaseTime.Ticks;
+
+                System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
+
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            testString = "INSERT COIN";
+            testState = DigitalDisplay.displayState.insertCoins;
+
+            Assert.AreEqual(testString, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
+
+        [TestMethod]
         public void TestVendingMachineDisplayUpdatesWhenCoinIsAdded(){
 
             testVendingMachineController = new VendingMachineController();

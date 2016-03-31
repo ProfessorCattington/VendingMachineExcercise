@@ -72,44 +72,6 @@
         public string DisplayMessage(){
 
             new DisplayChanger(this);
-
-            //switch (m_currentState){
-
-            //    case displayState.displayDeposit:
-
-            //        break;
-
-            //    case displayState.insertCoins:
-
-            //       m_displayMessage = "INSERT COINS";
-
-            //       break;
-
-            //    case displayState.displayPrice:
-
-            //        new DisplayPriceStrategy(this);
-
-            //        break;
-
-            //    case displayState.thankYou:
-
-            //        new DisplayThankYouStrategy(this);
-
-            //        break;
-
-            //    case displayState.productSoldOut:
-
-            //        new DisplaySoldOutStrategy(this);
-
-            //        break;
-
-            //    case displayState.exactChange:
-
-            //        new DisplayExactChangeStrategy(this);
-
-            //        break;
-            //}
-
             return m_displayMessage;
         }
 
