@@ -127,8 +127,9 @@ namespace VendingMachineTestNS{
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
-            string testPrice = "$0.33";
-            digitalDisplay.UserHasntDepositedEnough(testPrice);
+            string testMessage = "PRICE $0.33";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -145,7 +146,7 @@ namespace VendingMachineTestNS{
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayDeposit;
+            testState = DigitalDisplay.displayState.displayDeposit;
 
             Assert.AreEqual(testDeposit.ToString("C2"), digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
@@ -157,8 +158,10 @@ namespace VendingMachineTestNS{
             testVendingMachineController = new VendingMachineController();
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
-            string testPrice = "$0.99";
-            digitalDisplay.UserHasntDepositedEnough(testPrice);
+
+            string testMessage = "PRICE $0.99";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
             long startTime = System.DateTime.Now.Ticks;
@@ -175,7 +178,7 @@ namespace VendingMachineTestNS{
 
             DisplayChanger displayChanger = new DisplayChanger(digitalDisplay);
 
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.insertCoins;
+            testState = DigitalDisplay.displayState.insertCoins;
 
             Assert.AreEqual("INSERT COINS", digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
