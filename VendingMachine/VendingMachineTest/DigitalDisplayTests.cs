@@ -29,7 +29,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testString = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
             System.DateTime testTime = System.DateTime.Now;
 
             digitalDisplay.SetMessageAndState(testString, testState);
@@ -396,7 +396,7 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
 
             string testMessage = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
@@ -428,7 +428,7 @@ namespace VendingMachineTestNS {
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
             string testMessage = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;

@@ -21,7 +21,7 @@ namespace VendingMachineNS { }
         if (productStock == 0){
 
             string message = "SOLD OUT";
-            DigitalDisplay.displayState displayState = DigitalDisplay.displayState.productSoldOut;
+            DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
             digitalDisplay.SetMessageAndState(message, displayState);
         }
         else if (coinAccepter.WeHaveEnoughForChange(candyPrice)){

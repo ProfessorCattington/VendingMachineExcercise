@@ -43,9 +43,10 @@
 
         public string DisplayMessage(){
 
-            //new DisplayChanger(this);
-
             displayState currentDisplayState = GetCurrentState();
+
+            string displayMessage;
+            displayState newState;
 
             long currentTime = System.DateTime.Now.Ticks;
             long lastDisplayMessageTime = GetLastMessageTime().Ticks;
@@ -64,34 +65,15 @@
 
                         if (depositAmount > 0){
 
-                            currentDisplayState = displayState.displayDeposit;
-                            SetMessage(depositAmount.ToString("C2"));
+                            newState = displayState.displayDeposit;
+                            displayMessage = depositAmount.ToString("C2");
+                            SetMessageAndState(displayMessage, newState);
                         }
                         else{
 
-                            currentDisplayState = displayState.insertCoins;
-                            SetMessage("INSERT COINS");
-                        }
-                    }
-
-                    break;
-
-                case displayState.productSoldOut:
-
-                    if (timeSpan.Seconds > 3){
-
-                        CoinAccepter coinAccepter = GetVendingMachineController().GetCoinAccepter();
-                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
-
-                        if (depositAmount > 0){
-
-                            currentDisplayState = displayState.displayDeposit;
-                            SetMessage(depositAmount.ToString("C2"));
-                        }
-                        else{
-
-                            currentDisplayState = displayState.insertCoins;
-                            SetMessage("INSERT COINS");
+                            newState = displayState.insertCoins;
+                            displayMessage = "INSERT COINS";
+                            SetMessageAndState(displayMessage, newState);
                         }
                     }
 
@@ -101,8 +83,9 @@
 
                     if (timeSpan.Seconds > 3){
 
-                        currentDisplayState = displayState.insertCoins;
-                        SetMessage("INSERT COINS");
+                       newState = displayState.insertCoins;
+                        displayMessage = "INSERT COINS";
+                        SetMessageAndState(displayMessage, newState);
                     }
 
                     break;
@@ -111,7 +94,7 @@
                     break;
             }
 
-            SetCurrentState(currentDisplayState);
+            //SetCurrentState(currentDisplayState);
             return m_displayMessage;
         }
 
