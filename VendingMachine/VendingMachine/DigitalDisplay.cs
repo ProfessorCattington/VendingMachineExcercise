@@ -14,7 +14,6 @@
             productSoldOut,
             displayPrice,
             insertCoins,
-            exactChange,
             displayDeposit
         }
 
@@ -63,6 +62,26 @@
                         CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
                         decimal depositAmount = coinAccepter.GetCurrentDeposit();
 
+                        if (depositAmount > 0){
+
+                            currentDisplayState = displayState.displayDeposit;
+                            SetMessage(depositAmount.ToString("C2"));
+                        }
+                        else{
+
+                            currentDisplayState = displayState.insertCoins;
+                            SetMessage("INSERT COINS");
+                        }
+                    }
+
+                    break;
+
+                case displayState.productSoldOut:
+
+                    if (timeSpan.Seconds > 3){
+
+                        CoinAccepter coinAccepter = GetVendingMachineController().GetCoinAccepter();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
 
                         if (depositAmount > 0){
 
@@ -78,6 +97,15 @@
 
                     break;
 
+                case displayState.thankYou:
+
+                    if (timeSpan.Seconds > 3){
+
+                        currentDisplayState = displayState.insertCoins;
+                        SetMessage("INSERT COINS");
+                    }
+
+                    break;
                 default:
 
                     break;
