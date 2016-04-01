@@ -26,9 +26,11 @@ namespace VendingMachineNS {
                 DigitalDisplay.displayState displayState = DigitalDisplay.displayState.productSoldOut;
                 digitalDisplay.SetMessageAndState(message, displayState);
             }
-            else if (coinAccepter.WeHaveEnoughForChange(colaPrice)) { 
-            
-                digitalDisplay.UserSelectedExactChangeOnlyProduct();
+            else if (coinAccepter.WeHaveEnoughForChange(colaPrice)) {
+
+                string message = "EXACT CHANGE ONLY";
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                digitalDisplay.SetMessageAndState(message, displayState);
             }
             else if (currentDeposit < colaPrice){
 

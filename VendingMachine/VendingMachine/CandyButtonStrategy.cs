@@ -26,7 +26,9 @@ namespace VendingMachineNS { }
         }
         else if (coinAccepter.WeHaveEnoughForChange(candyPrice)){
 
-            digitalDisplay.UserSelectedExactChangeOnlyProduct();
+            string message = "EXACT CHANGE ONLY";
+            DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(message, displayState);
         }
         else if (currentDeposit < candyPrice){
 
