@@ -6,16 +6,11 @@ namespace VendingMachineNS {
 
         private VendingMachineController m_vendingMachineController;
 
-        private Dictionary<string, int> m_vendingMachineProducts;
         private List<Product> m_products;
 
         public SnackBox(VendingMachineController vendingMachineController) {
 
             m_vendingMachineController = vendingMachineController;
-            m_vendingMachineProducts = new Dictionary<string, int>();
-            m_vendingMachineProducts.Add("Cola", 1);
-            m_vendingMachineProducts.Add("Chips", 1);
-            m_vendingMachineProducts.Add("Candy", 1);
 
             m_products = new List<Product>();
             m_products.Add(new Product("Cola", 1, 1));
@@ -40,20 +35,6 @@ namespace VendingMachineNS {
                 }
             }
             return productToReturn;
-        }
-        public void SetProductStock(string product, int stock){
-
-            m_vendingMachineProducts[product] = stock;
-        }
-
-        public int GetProductStock(string product){
-
-            return m_vendingMachineProducts[product];
-        }
-
-        public Dictionary<string, int> GetProductDictionary(){
-
-            return m_vendingMachineProducts;
         }
 
         public VendingMachineController GetVendingMachineController(){

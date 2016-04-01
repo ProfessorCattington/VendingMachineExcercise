@@ -19,7 +19,6 @@ namespace VendingMachineTestNS {
             SnackBox snackBox = testVendingMachineController.GetSnackBox();
 
             string testProductName = "Cola";
-            Product testProduct = snackBox.GetProductByName(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -27,28 +26,26 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(testProduct);
+            controlPanel.UserPushedAButton(testProductName);
 
             Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
 
             testProductName = "Candy";
-            testProduct = snackBox.GetProductByName(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            controlPanel.UserPushedAButton(testProduct);
+            controlPanel.UserPushedAButton(testProductName);
 
             Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
 
             testProductName = "Chips";
-            testProduct = snackBox.GetProductByName(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            controlPanel.UserPushedAButton(testProduct);
+            controlPanel.UserPushedAButton(testProductName);
 
             Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
         }

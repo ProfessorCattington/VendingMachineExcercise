@@ -83,9 +83,9 @@ namespace VendingMachineTestNS {
             testVendingMachineController = new VendingMachineController();
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("Candy");
-            controlPanel.UserPushedAButton(testProduct);
+
+            string testProductName = "Candy";
+            controlPanel.UserPushedAButton(testProductName);
 
             string testDisplayOutput = "$0.65";
 
@@ -94,14 +94,14 @@ namespace VendingMachineTestNS {
 
             testDisplayOutput = "$0.50";
 
-            testProduct = snackbox.GetProductByName("Chips");
-            controlPanel.UserPushedAButton(testProduct);
+            testProductName = "Chips";
+            controlPanel.UserPushedAButton(testProductName);
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
 
             testDisplayOutput = "$1.00";
 
-            testProduct = snackbox.GetProductByName("Cola");
-            controlPanel.UserPushedAButton(testProduct);
+            testProductName = "Cola";
+            controlPanel.UserPushedAButton(testProductName);
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
@@ -117,11 +117,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("Cola");
-            controlPanel.UserPushedAButton(testProduct);
 
-            controlPanel.UserPushedAButton(testProduct);
+            string testProductName = "Cola";
+            controlPanel.UserPushedAButton(testProductName);
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
@@ -145,9 +143,8 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("Cola");
-            controlPanel.UserPushedAButton(testProduct);
+            string testProductName = "Cola";
+            controlPanel.UserPushedAButton(testProductName);
 
             string testMessage = "THANK YOU";
 
@@ -170,9 +167,8 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("Cola");
-            controlPanel.UserPushedAButton(testProduct);
+            string testProductName = "Cola";
+            controlPanel.UserPushedAButton(testProductName);
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
@@ -213,9 +209,8 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("Chips");
-            controlPanel.UserPushedAButton(testProduct);
+            string testProductName = "Chips";
+            controlPanel.UserPushedAButton(testProductName);
 
             string testDisplayOutput = "EXACT CHANGE ONLY";
 
@@ -233,9 +228,8 @@ namespace VendingMachineTestNS {
             coinAccepter.SetBankAmount(0);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("Cola");
-            controlPanel.UserPushedAButton(testProduct);
+            string testProductName = "Cola";
+            controlPanel.UserPushedAButton(testProductName);
 
             string testDisplayOutput = "EXACT CHANGE ONLY";
 
