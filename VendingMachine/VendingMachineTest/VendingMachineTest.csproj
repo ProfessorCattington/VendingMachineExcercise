@@ -52,11 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CandyButtonStrategyTests.cs" />
-    <Compile Include="ChipButtonStrategyTests.cs" />
     <Compile Include="CoinAccepterTests.cs" />
-    <Compile Include="CoinReturnButtonStrategyTests.cs" />
-    <Compile Include="ColaButtonStrategyTests.cs" />
     <Compile Include="ControlPanelTests.cs" />
     <Compile Include="DigitalDisplayTests.cs" />
     <Compile Include="ProductDispenserTests.cs" />

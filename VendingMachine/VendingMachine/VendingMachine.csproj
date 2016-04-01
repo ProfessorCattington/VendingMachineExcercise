@@ -43,11 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CandyButtonStrategy.cs" />
-    <Compile Include="ChipButtonStrategy.cs" />
     <Compile Include="CoinAccepter.cs" />
-    <Compile Include="CoinReturnButtonStrategy.cs" />
-    <Compile Include="ColaButtonStrategy.cs" />
     <Compile Include="ControlPanel.cs" />
     <Compile Include="DigitalDisplay.cs" />
     <Compile Include="Product.cs" />
