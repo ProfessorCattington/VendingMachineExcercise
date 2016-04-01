@@ -18,6 +18,8 @@ namespace VendingMachineNS {
             m_vendingMachineProducts.Add("Candy", 1);
 
             m_products = new List<Product>();
+
+
         }
 
         public List<Product> GetProducts(){

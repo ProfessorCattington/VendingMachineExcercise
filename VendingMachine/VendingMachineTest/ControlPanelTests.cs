@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineNS;
+using System.Collections.Generic;
 
 namespace VendingMachineTestNS { 
 
@@ -16,6 +17,10 @@ namespace VendingMachineTestNS {
             ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
 
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+
+            string testProductName = "Cola";
+            Product testProduct = snackBox.GetProducts(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -23,27 +28,30 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            controlPanel.UserPushedAButton(testProduct);
 
-            string testProduct = "Cola";
-            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+            Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
 
-            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
-            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
-            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
-
-            controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
-
-            testProduct = "Candy";
-            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+            testProductName = "Candy";
+            testProduct = snackBox.GetProducts(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
+            controlPanel.UserPushedAButton(testProduct);
 
-            testProduct = "Chips";
-            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+            Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
+
+            testProductName = "Chips";
+            testProduct = snackBox.GetProducts(testProductName);
+
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            controlPanel.UserPushedAButton(testProduct);
+
+            Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
         }
     }
 }
