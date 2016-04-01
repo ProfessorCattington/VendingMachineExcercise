@@ -62,6 +62,17 @@ namespace VendingMachineNS {
             }
         }
 
+        public void UserPushedCoinReturnButton(){
+
+            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+            coinAccepter.UserPressedCoinReturn();
+
+            DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+            digitalDisplay.UserPressedCoinReturn();
+
+            ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
+            productDispenser.SetLastProductDispensed("None");
+        }
         //switch (button){
 
         //    case buttons.candy:
