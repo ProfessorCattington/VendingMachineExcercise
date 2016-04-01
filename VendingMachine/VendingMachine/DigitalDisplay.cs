@@ -46,7 +46,7 @@
 
             //new DisplayChanger(this);
 
-            DigitalDisplay.displayState currentDisplayState = GetCurrentState();
+            displayState currentDisplayState = GetCurrentState();
 
             long currentTime = System.DateTime.Now.Ticks;
             long lastDisplayMessageTime = GetLastMessageTime().Ticks;
@@ -56,7 +56,7 @@
 
             switch (currentDisplayState){
 
-                case DigitalDisplay.displayState.displayPrice:
+                case displayState.displayPrice:
 
                     if (timeSpan.Seconds > 3){
 
