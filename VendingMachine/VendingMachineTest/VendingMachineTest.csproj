@@ -62,7 +62,6 @@
     <Compile Include="ProductDispenserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SnackBoxTests.cs" />
-    <Compile Include="DisplayChangerTests.cs" />
     <Compile Include="VendingMachineTests.cs" />
   </ItemGroup>
   <ItemGroup>

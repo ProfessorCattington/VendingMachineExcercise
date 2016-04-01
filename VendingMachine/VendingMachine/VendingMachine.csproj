@@ -50,7 +50,7 @@
     <Compile Include="ColaButtonStrategy.cs" />
     <Compile Include="ControlPanel.cs" />
     <Compile Include="DigitalDisplay.cs" />
-    <Compile Include="DisplayChanger.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="ProductDispenser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

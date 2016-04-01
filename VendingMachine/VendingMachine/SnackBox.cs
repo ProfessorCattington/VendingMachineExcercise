@@ -7,6 +7,7 @@ namespace VendingMachineNS {
         private VendingMachineController m_vendingMachineController;
 
         private Dictionary<string, int> m_vendingMachineProducts;
+        private List<Product> m_products;
 
         public SnackBox(VendingMachineController vendingMachineController) {
 
@@ -15,6 +16,13 @@ namespace VendingMachineNS {
             m_vendingMachineProducts.Add("Cola", 1);
             m_vendingMachineProducts.Add("Chips", 1);
             m_vendingMachineProducts.Add("Candy", 1);
+
+            m_products = new List<Product>();
+        }
+
+        public List<Product> GetProducts(){
+
+            return m_products;
         }
 
         public void SetProductStock(string product, int stock){
