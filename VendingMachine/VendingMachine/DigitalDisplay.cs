@@ -36,40 +36,6 @@
             m_displayMessage = message;
         }
 
-        public void UserInsertCoins(decimal deposit){
-
-            m_displayMessage = deposit.ToString("C2");
-            m_currentState = displayState.displayDeposit;
-        }
-
-        public void UserMadeAPurchase(){
-
-            m_displayMessage = "THANK YOU";
-            m_currentState = displayState.thankYou;
-            m_lastDisplayMessageTime = System.DateTime.Now;
-        }
-
-        public void UserSelectedASoldOutProduct(){
-
-            m_displayMessage = "SOLD OUT";
-            m_currentState = displayState.productSoldOut;
-            m_lastDisplayMessageTime = System.DateTime.Now;
-        }
-
-        public void UserHasntDepositedEnough(string productPrice){
-
-            m_displayMessage = "PRICE " + productPrice;
-            m_currentState = displayState.displayPrice;
-            m_lastDisplayMessageTime = System.DateTime.Now;
-        }
-
-        public void UserSelectedExactChangeOnlyProduct() {
-
-            m_displayMessage = "EXACT CHANGE ONLY";
-            m_currentState = displayState.displayPrice;
-            m_lastDisplayMessageTime = System.DateTime.Now;
-        }
-
         public void UserPressedCoinReturn(){
 
             m_displayMessage = "INSERT COIN";
@@ -78,7 +44,46 @@
 
         public string DisplayMessage(){
 
-            new DisplayChanger(this);
+            //new DisplayChanger(this);
+
+            DigitalDisplay.displayState currentDisplayState = GetCurrentState();
+
+            long currentTime = System.DateTime.Now.Ticks;
+            long lastDisplayMessageTime = GetLastMessageTime().Ticks;
+            long elapsedTime = currentTime - lastDisplayMessageTime;
+
+            System.TimeSpan timeSpan = new System.TimeSpan(elapsedTime);
+
+            switch (currentDisplayState){
+
+                case DigitalDisplay.displayState.displayPrice:
+
+                    if (timeSpan.Seconds > 3){
+
+                        CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+                        decimal depositAmount = coinAccepter.GetCurrentDeposit();
+
+
+                        if (depositAmount > 0){
+
+                            currentDisplayState = displayState.displayDeposit;
+                            SetMessage(depositAmount.ToString("C2"));
+                        }
+                        else{
+
+                            currentDisplayState = displayState.insertCoins;
+                            SetMessage("INSERT COINS");
+                        }
+                    }
+
+                    break;
+
+                default:
+
+                    break;
+            }
+
+            SetCurrentState(currentDisplayState);
             return m_displayMessage;
         }
 
