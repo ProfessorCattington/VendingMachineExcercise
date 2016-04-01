@@ -22,39 +22,76 @@ namespace VendingMachineNS {
             m_vendingMachineController = vendingMachineController;
         }
 
-        public void UserPushedAButton(buttons button){
+        public void UserPushedAButton(Product product){
 
-            switch (button){
+            CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
+            decimal currentDeposit = coinAccepter.GetCurrentDeposit();
 
-                case buttons.candy:
+            DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
+            ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
 
-                    new CandyButtonStrategy(m_vendingMachineController, m_candyPrice);
+            string productName = product.GetName();
+            decimal productPrice = product.GetPrice();
+            int productStock = product.GetStock();
 
-                    break;
+            if (productStock == 0){
 
-                case buttons.chip:
+                string message = "SOLD OUT";
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                digitalDisplay.SetMessageAndState(message, displayState);
+            }
+            else if (coinAccepter.WeHaveEnoughForChange(productPrice)){
 
-                    new ChipButtonStrategy(m_vendingMachineController, m_chipsPrice);
+                string message = "EXACT CHANGE ONLY";
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                digitalDisplay.SetMessageAndState(message, displayState);
+            }
+            else if (currentDeposit < productPrice){
 
-                    break;
+                string message = "PRICE " + productPrice.ToString("C2");
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                digitalDisplay.SetMessageAndState(message, displayState);
+            }
+            else{
 
-                case buttons.cola:
-
-                    new ColaButtonStrategy(m_vendingMachineController, m_colaPrice);
-       
-                    break;
-
-                case buttons.coinReturn:
-
-                    new CoinReturnButtonStrategy(m_vendingMachineController);
-
-                    break;
-
-                default:
-                    break;
-
+                productDispenser.SetLastProductDispensed(productName);
+                string displayMessage = "THANK YOU";
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.thankYou;
+                digitalDisplay.SetMessageAndState(displayMessage, displayState);
+                coinAccepter.CheckIfWeOweTheUserChange(productPrice);
             }
         }
+
+        //switch (button){
+
+        //    case buttons.candy:
+
+        //        new CandyButtonStrategy(m_vendingMachineController, m_candyPrice);
+
+        //        break;
+
+        //    case buttons.chip:
+
+        //        new ChipButtonStrategy(m_vendingMachineController, m_chipsPrice);
+
+        //        break;
+
+        //    case buttons.cola:
+
+        //        new ColaButtonStrategy(m_vendingMachineController, m_colaPrice);
+
+        //        break;
+
+        //    case buttons.coinReturn:
+
+        //        new CoinReturnButtonStrategy(m_vendingMachineController);
+
+        //        break;
+
+        //    default:
+        //        break;
+
+        //}
         public VendingMachineController GetVendingMachineController(){
 
             return m_vendingMachineController;

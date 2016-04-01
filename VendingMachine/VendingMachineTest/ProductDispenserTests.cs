@@ -34,10 +34,12 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            string testProduct = "Cola";
+            string testProductName = "Cola";
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName(testProductName);
+            controlPanel.UserPushedAButton(testProduct);
 
             Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
         }
@@ -55,7 +57,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("CoinReturn");
+            controlPanel.UserPushedAButton(testProduct);
 
             decimal testChangeReturned = 1;
 

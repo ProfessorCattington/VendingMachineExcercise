@@ -83,7 +83,9 @@ namespace VendingMachineTestNS {
             testVendingMachineController = new VendingMachineController();
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Candy");
+            controlPanel.UserPushedAButton(testProduct);
 
             string testDisplayOutput = "$0.65";
 
@@ -92,12 +94,14 @@ namespace VendingMachineTestNS {
 
             testDisplayOutput = "$0.50";
 
-            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
+            testProduct = snackbox.GetProductByName("Chips");
+            controlPanel.UserPushedAButton(testProduct);
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
 
             testDisplayOutput = "$1.00";
 
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            testProduct = snackbox.GetProductByName("Cola");
+            controlPanel.UserPushedAButton(testProduct);
             Assert.AreEqual("PRICE " + testDisplayOutput, digitalDisplay.DisplayMessage());
         }
 
@@ -113,8 +117,11 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Cola");
+            controlPanel.UserPushedAButton(testProduct);
 
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            controlPanel.UserPushedAButton(testProduct);
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 

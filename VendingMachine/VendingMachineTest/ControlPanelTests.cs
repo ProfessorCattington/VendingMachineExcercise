@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineNS;
-using System.Collections.Generic;
 
 namespace VendingMachineTestNS { 
 
@@ -20,7 +19,7 @@ namespace VendingMachineTestNS {
             SnackBox snackBox = testVendingMachineController.GetSnackBox();
 
             string testProductName = "Cola";
-            Product testProduct = snackBox.GetProducts(testProductName);
+            Product testProduct = snackBox.GetProductByName(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -33,7 +32,7 @@ namespace VendingMachineTestNS {
             Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
 
             testProductName = "Candy";
-            testProduct = snackBox.GetProducts(testProductName);
+            testProduct = snackBox.GetProductByName(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
@@ -44,7 +43,7 @@ namespace VendingMachineTestNS {
             Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
 
             testProductName = "Chips";
-            testProduct = snackBox.GetProducts(testProductName);
+            testProduct = snackBox.GetProductByName(testProductName);
 
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);

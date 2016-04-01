@@ -18,7 +18,9 @@ namespace VendingMachineNS {
             m_vendingMachineProducts.Add("Candy", 1);
 
             m_products = new List<Product>();
-
+            m_products.Add(new Product("Cola", 1, 1));
+            m_products.Add(new Product("Chips", .5m, 1));
+            m_products.Add(new Product("Candy", .65m, 1));
 
         }
 
@@ -27,6 +29,18 @@ namespace VendingMachineNS {
             return m_products;
         }
 
+        public Product GetProductByName(string name) {
+
+            Product productToReturn = null;
+
+            foreach(Product product in m_products){
+
+                if(product.GetName() == name){
+                    productToReturn = product;
+                }
+            }
+            return productToReturn;
+        }
         public void SetProductStock(string product, int stock){
 
             m_vendingMachineProducts[product] = stock;

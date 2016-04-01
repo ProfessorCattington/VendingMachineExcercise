@@ -67,7 +67,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Chips");
+            controlPanel.UserPushedAButton(testProduct);
 
             decimal testChangeReturned = .50m;
 
@@ -78,7 +80,8 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
-            controlPanel.UserPushedAButton(ControlPanel.buttons.candy);
+            testProduct = snackbox.GetProductByName("Candy");
+            controlPanel.UserPushedAButton(testProduct);
 
             testChangeReturned = .35m;
 
@@ -99,7 +102,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.coinReturn);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("CoinReturn");
+            controlPanel.UserPushedAButton(testProduct);
 
             decimal testChangeReturned = .75m;
 
