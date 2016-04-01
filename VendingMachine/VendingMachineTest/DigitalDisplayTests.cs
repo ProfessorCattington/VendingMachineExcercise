@@ -228,5 +228,40 @@ namespace VendingMachineTestNS {
 
             Assert.AreEqual(testDisplayOutput, digitalDisplay.DisplayMessage());
         }
+
+        [TestMethod]
+        public void TestDisplayChangesMessageAfterAWaitWithDepositOnExactChangePurchase(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testMessage = "EXACT CHANGE ONLY";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+            string testExactChange = "$0.25";
+            testState = DigitalDisplay.displayState.displayDeposit;
+
+            digitalDisplay.DisplayMessage();
+
+            Assert.AreEqual(testExactChange, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
     }
 }
