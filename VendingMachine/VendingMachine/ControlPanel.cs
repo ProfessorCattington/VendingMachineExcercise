@@ -10,7 +10,7 @@ namespace VendingMachineNS {
             m_vendingMachineController = vendingMachineController;
         }
 
-        public void UserPushedAButton(Product product){
+        public void UserPushedAButton(string productName){
 
             CoinAccepter coinAccepter = m_vendingMachineController.GetCoinAccepter();
             decimal currentDeposit = coinAccepter.GetCurrentDeposit();
@@ -18,7 +18,9 @@ namespace VendingMachineNS {
             DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
             ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
 
-            string productName = product.GetName();
+            SnackBox snackBox = m_vendingMachineController.GetSnackBox();
+            Product product = snackBox.GetProductByName(productName);
+                    
             decimal productPrice = product.GetPrice();
             int productStock = product.GetStock();
 
