@@ -102,9 +102,8 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("CoinReturn");
-            controlPanel.UserPushedAButton(testProduct);
+
+            controlPanel.UserPushedCoinReturnButton();
 
             decimal testChangeReturned = .75m;
 

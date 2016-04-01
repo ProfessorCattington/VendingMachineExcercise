@@ -41,7 +41,7 @@ namespace VendingMachineTestNS {
             Product testProduct = snackbox.GetProductByName(testProductName);
             controlPanel.UserPushedAButton(testProduct);
 
-            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+            Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
         }
 
         [TestMethod]
@@ -57,9 +57,7 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            SnackBox snackbox = testVendingMachineController.GetSnackBox();
-            Product testProduct = snackbox.GetProductByName("CoinReturn");
-            controlPanel.UserPushedAButton(testProduct);
+            controlPanel.UserPushedCoinReturnButton();
 
             decimal testChangeReturned = 1;
 

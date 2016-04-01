@@ -145,7 +145,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Cola");
+            controlPanel.UserPushedAButton(testProduct);
 
             string testMessage = "THANK YOU";
 
@@ -168,7 +170,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Cola");
+            controlPanel.UserPushedAButton(testProduct);
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
@@ -209,7 +213,9 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.chip);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Chips");
+            controlPanel.UserPushedAButton(testProduct);
 
             string testDisplayOutput = "EXACT CHANGE ONLY";
 
@@ -227,7 +233,9 @@ namespace VendingMachineTestNS {
             coinAccepter.SetBankAmount(0);
 
             ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
-            controlPanel.UserPushedAButton(ControlPanel.buttons.cola);
+            SnackBox snackbox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackbox.GetProductByName("Cola");
+            controlPanel.UserPushedAButton(testProduct);
 
             string testDisplayOutput = "EXACT CHANGE ONLY";
 
