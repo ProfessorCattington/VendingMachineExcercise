@@ -235,6 +235,7 @@ namespace VendingMachineTestNS {
             testVendingMachineController = new VendingMachineController();
 
             CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(0);
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
@@ -261,6 +262,41 @@ namespace VendingMachineTestNS {
             digitalDisplay.DisplayMessage();
 
             Assert.AreEqual(testExactChange, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangesMessageAfterAWaitWithoutDepositOnExactChangePurchase(){ 
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.SetBankAmount(0);
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testMessage = "EXACT CHANGE ONLY";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+            testMessage = "INSERT COINS";
+            testState = DigitalDisplay.displayState.insertCoins;
+
+            digitalDisplay.DisplayMessage();
+
+            Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
     }
