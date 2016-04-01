@@ -19,5 +19,6 @@ namespace VendingMachineTestNS{
             Assert.AreEqual(testPrice, candyBar.GetPrice());
             Assert.AreEqual(testStock, candyBar.GetStock());
         }
+       
     }
 }
