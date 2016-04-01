@@ -338,7 +338,7 @@ namespace VendingMachineTestNS {
         }
 
         [TestMethod]
-        public void TestDisplayChangesDisplayMessageFromPriceToInsertCoinsAfterAWaitIfNoMoneyIsDeposited(){ 
+        public void TestDisplayChangesMessageFromPriceToInsertCoinsAfterAWaitIfNoMoneyIsDeposited(){ 
 
             testVendingMachineController = new VendingMachineController();
 
@@ -366,6 +366,91 @@ namespace VendingMachineTestNS {
             testState = DigitalDisplay.displayState.insertCoins;
 
             Assert.AreEqual("INSERT COINS", digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
+
+        [TestMethod]
+        public void TestDisplayDoesntImmediatelyChangeDisplayMessageWhenSoldOutProductIsSelected(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            string testMessage = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
+
+           digitalDisplay.DisplayMessage();
+
+            Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerChangesMessageAfterWaitWithDepositandSoldOutProduct(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
+
+            string testMessage = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            digitalDisplay.DisplayMessage();
+
+            string testDeposit = "$0.10";
+            testState = DigitalDisplay.displayState.displayDeposit;
+
+            Assert.AreEqual(testDeposit, digitalDisplay.GetCurrentMessage());
+            Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
+        }
+
+        [TestMethod]
+        public void TestDisplayChangerChangesMessageAfterAShortWaitWithoutDeposit(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
+            string testMessage = "SOLD OUT";
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            digitalDisplay.SetMessageAndState(testMessage, testState);
+
+            bool waiting = true;
+            long startTime = System.DateTime.Now.Ticks;
+
+            while (waiting){
+
+                long currentTime = System.DateTime.Now.Ticks;
+                System.TimeSpan timeSpan = new System.TimeSpan(currentTime - startTime);
+                if (timeSpan.Seconds > 4){
+
+                    waiting = false;
+                }
+            }
+
+            digitalDisplay.DisplayMessage();
+
+            testState = DigitalDisplay.displayState.insertCoins;
+
+            testMessage = "INSERT COINS";
+
+            Assert.AreEqual(testMessage, digitalDisplay.GetCurrentMessage());
             Assert.AreEqual(testState, digitalDisplay.GetCurrentState());
         }
     }
