@@ -58,7 +58,10 @@ namespace VendingMachineNS {
             coinAccepter.UserPressedCoinReturn();
 
             DigitalDisplay digitalDisplay = m_vendingMachineController.GetDigitalDisplay();
-            digitalDisplay.UserPressedCoinReturn();
+
+            string displayMessage = "INSERT COIN";
+            DigitalDisplay.displayState displayState = DigitalDisplay.displayState.insertCoins;
+            digitalDisplay.SetMessageAndState(displayMessage, displayState);
 
             ProductDispenser productDispenser = m_vendingMachineController.GetProductDispenser();
             productDispenser.SetLastProductDispensed("None");
