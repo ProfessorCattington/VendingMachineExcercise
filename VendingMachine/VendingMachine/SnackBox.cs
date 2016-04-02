@@ -34,8 +34,13 @@ namespace VendingMachineNS {
                     productToReturn = product;
                 }
             }
-            
-            return productToReturn;
+            if (productToReturn == null){
+
+                throw new System.Exception("Invalid product name");
+            }
+            else{
+                return productToReturn;
+            }
         }
 
         public VendingMachineController GetVendingMachineController(){
