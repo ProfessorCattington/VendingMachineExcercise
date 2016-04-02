@@ -27,19 +27,19 @@ namespace VendingMachineNS {
             if (productStock == 0){
 
                 string message = "SOLD OUT";
-                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.delayedMessage;
                 digitalDisplay.SetMessageAndState(message, displayState);
             }
             else if (coinAccepter.WeHaveEnoughForChange(productPrice)){
 
                 string message = "EXACT CHANGE ONLY";
-                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.delayedMessage;
                 digitalDisplay.SetMessageAndState(message, displayState);
             }
             else if (currentDeposit < productPrice){
 
                 string message = "PRICE " + productPrice.ToString("C2");
-                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.displayPrice;
+                DigitalDisplay.displayState displayState = DigitalDisplay.displayState.delayedMessage;
                 digitalDisplay.SetMessageAndState(message, displayState);
             }
             else{

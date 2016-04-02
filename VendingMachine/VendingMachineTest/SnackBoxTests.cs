@@ -1,16 +1,14 @@
 ﻿using VendingMachineNS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
-namespace VendingMachineTest
-{
+namespace VendingMachineTestNS{
     [TestClass]
     public class SnackBoxTests{
 
         VendingMachineController testVendingMachineController;
 
         [TestMethod]
-        void TestSnackBoxConstructorsProperly(){
+        public void TestSnackBoxConstructorsProperly(){
 
             testVendingMachineController = new VendingMachineController();
             SnackBox snackBox = testVendingMachineController.GetSnackBox();
@@ -20,9 +18,14 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        void TestProductListSetterSetsTheCorrectProduct()
-        {
+        public void TestGetProductByNameReturnsCorrectProduct(){
 
+            testVendingMachineController = new VendingMachineController();
+            string testProductName = "Cola";
+
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+            Product testProduct = snackBox.GetProductByName(testProductName);
+            Assert.AreEqual(testProductName, testProduct.GetName());
         }
     }
 }

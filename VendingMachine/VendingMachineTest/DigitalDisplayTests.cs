@@ -29,7 +29,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testString = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             System.DateTime testTime = System.DateTime.Now;
 
             digitalDisplay.SetMessageAndState(testString, testState);
@@ -250,7 +250,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testMessage = "EXACT CHANGE ONLY";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
@@ -285,7 +285,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testMessage = "EXACT CHANGE ONLY";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
@@ -322,7 +322,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testMessage = "PRICE $0.33";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
@@ -354,7 +354,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testMessage = "PRICE $0.99";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
@@ -386,7 +386,7 @@ namespace VendingMachineTestNS {
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
 
             string testMessage = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.productSoldOut;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
            digitalDisplay.DisplayMessage();
@@ -405,7 +405,7 @@ namespace VendingMachineTestNS {
             coinAccepter.AcceptCoin(CoinAccepter.Coin.Dime);
 
             string testMessage = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;
@@ -437,7 +437,7 @@ namespace VendingMachineTestNS {
 
             DigitalDisplay digitalDisplay = testVendingMachineController.GetDigitalDisplay();
             string testMessage = "SOLD OUT";
-            DigitalDisplay.displayState testState = DigitalDisplay.displayState.displayPrice;
+            DigitalDisplay.displayState testState = DigitalDisplay.displayState.delayedMessage;
             digitalDisplay.SetMessageAndState(testMessage, testState);
 
             bool waiting = true;

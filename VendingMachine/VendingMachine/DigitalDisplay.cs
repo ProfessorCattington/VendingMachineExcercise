@@ -11,8 +11,7 @@
         public enum displayState{
 
             thankYou,
-            productSoldOut,
-            displayPrice,
+            delayedMessage,
             insertCoins,
             displayDeposit
         }
@@ -30,17 +29,6 @@
             m_lastDisplayMessageTime = System.DateTime.Now;
         }
 
-        public void SetMessage(string message){
-
-            m_displayMessage = message;
-        }
-
-        public void UserPressedCoinReturn(){
-
-            m_displayMessage = "INSERT COIN";
-            m_currentState = displayState.insertCoins;
-        }
-
         public string DisplayMessage(){
 
             displayState currentDisplayState = GetCurrentState();
@@ -56,7 +44,7 @@
 
             switch (currentDisplayState){
 
-                case displayState.displayPrice:
+                case displayState.delayedMessage:
 
                     if (timeSpan.Seconds > 3){
 
@@ -94,7 +82,6 @@
                     break;
             }
 
-            //SetCurrentState(currentDisplayState);
             return m_displayMessage;
         }
 
