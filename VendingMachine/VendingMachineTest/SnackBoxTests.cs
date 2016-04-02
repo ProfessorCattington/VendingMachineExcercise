@@ -27,5 +27,27 @@ namespace VendingMachineTestNS{
             Product testProduct = snackBox.GetProductByName(testProductName);
             Assert.AreEqual(testProductName, testProduct.GetName());
         }
+
+        [TestMethod]
+        public void TestInvalidProductNameThrowsException() {
+
+            testVendingMachineController = new VendingMachineController();
+            string testProductName = "Mountain Dew";
+
+            SnackBox snackBox = testVendingMachineController.GetSnackBox();
+
+            System.Exception testException = null;
+
+            try{
+
+                Product testProduct = snackBox.GetProductByName(testProductName);
+            }
+            catch (System.Exception e){
+
+                testException = e;
+            }
+
+            Assert.IsNotNull(testException);
+        }
     }
 }

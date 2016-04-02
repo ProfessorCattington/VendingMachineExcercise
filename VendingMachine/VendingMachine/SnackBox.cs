@@ -34,6 +34,7 @@ namespace VendingMachineNS {
                     productToReturn = product;
                 }
             }
+            
             return productToReturn;
         }
 
