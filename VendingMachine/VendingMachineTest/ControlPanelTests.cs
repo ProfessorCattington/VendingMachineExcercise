@@ -49,5 +49,26 @@ namespace VendingMachineTestNS {
 
             Assert.AreEqual(testProductName, productDispenser.GetLastProductDispensed());
         }
+
+        [TestMethod]
+        public void TestCoinReturnButtonReturnsCoins(){
+
+            testVendingMachineController = new VendingMachineController();
+
+            CoinAccepter coinAccepter = testVendingMachineController.GetCoinAccepter();
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+            coinAccepter.AcceptCoin(CoinAccepter.Coin.Quarter);
+
+            ControlPanel controlPanel = testVendingMachineController.GetControlPanel();
+            controlPanel.UserPushedCoinReturnButton();
+
+            decimal testDeposit = 0;
+            string testProduct = "None";
+
+            ProductDispenser productDispenser = testVendingMachineController.GetProductDispenser();
+
+            Assert.AreEqual(testDeposit, coinAccepter.GetCurrentDeposit());
+            Assert.AreEqual(testProduct, productDispenser.GetLastProductDispensed());
+        }
     }
 }
